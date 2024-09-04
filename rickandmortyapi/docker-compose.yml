@@ -1,0 +1,18 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    restart: always
+    image: rym-image-postgres
+    container_name: rym-postgres
+    env_file:
+      - ./.venv/.local/.postgres
+
+    ports:
+      - '5432:5432'
+    volumes:
+      - rym_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  rym_postgres_data:
