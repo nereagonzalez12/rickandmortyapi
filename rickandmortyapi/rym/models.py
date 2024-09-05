@@ -33,15 +33,23 @@ class Character(models.Model):
         "Dead": "Dead",
         "unknown": "unknown",
     }
+    
+    CHAR_GENDER = {
+        "Female": "Female",
+        "Male": "Male",
+        "Genderless": "Genderless",
+        "unknown": "unknown",
+    }
         
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField()    
     status = models.CharField(choices=CHAR_STATUS)    
     species = models.CharField()    
     type = models.CharField()    
-    image = models.CharField()   
-    origin = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='origin') 
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='location') 
+    gender = models.CharField(choices=CHAR_GENDER, default=CHAR_GENDER["unknown"])   
+    image = models.URLField()   
+    origin = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='origin', null=True) 
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='location', null=True) 
     episode = models.ManyToManyField(Episode)
     
     def __str__(self):

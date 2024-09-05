@@ -2,8 +2,6 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rym.models import *
 from rym.serializers import *
-import json
-# from . import request as scriptRequest
 
 # models viewsets 
 
@@ -29,22 +27,3 @@ class CharacterViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CharacterSerializer
     
     
-# import json data to mdoels
-
-# def import_data():
-#         locationData = scriptRequest.fetch_location_data()
-#         episodeData = scriptRequest.fetch_episode_data()
-#         characterData = scriptRequest.fetch_character_data()
-#         # location model
-#         for item in locationData['results']:
-#             print (item['id'],'-',item['name'])
-
-#                 # location = Location(
-#                 #     id=item[0],
-#                 #     name=item[1],
-#                 #     type=item[2],
-#                 #     dimension=item[3],
-#                 # )
-#                 # location.save()
-                
-# import_data()
