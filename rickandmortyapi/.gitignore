@@ -274,3 +274,8 @@ dump.rdb
 oniria_project/media/
 
 .pytest_cache/
+
+### Models json
+locations.json
+episodes.json
+characters.json
