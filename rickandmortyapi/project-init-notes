@@ -11,3 +11,6 @@ django-admin startproject projectname
 python manage.py migrate
 python manage.py runserver
 python manage.py startapp polls
+
+# docker up
+docker compose -f .\docker-compose.yml up -d
