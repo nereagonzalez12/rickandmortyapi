@@ -11,10 +11,13 @@ export class CharListComponent {
   private apiService = inject(ApiService);
 
   ngOnInit(): void {
-    this.obtainPublicData();
+
+    console.log('ola');
+    // this.obtainPublicData();
   }
 
   obtainPublicData() {
+    /* Subscribe to the API server to fetch data */
     this.apiService.getAllCharacters().subscribe({
       next: (data: ICharacter[]) => {
         console.log(data);

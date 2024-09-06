@@ -1,41 +1,40 @@
-# Instalar Angular
+### Install Angular
 
-## Desinstalar cliente de Angular
+# Uninstall Angular client
 npm uninstall -g @angular/cli
-## Instalar cliente Angular 16
+# Install Angular 16 client
 npm i -g @angular/cli@16.2.12
-
 _________________
 
-# Gestionar aplicaciones 
+### App management
 
-## Crear nueva app (--no-standalone para que mantenga el módulo ngModule)
+# Create a new app (--no-standalone to keep ngModule)
 ng new my-app --no-standalone
-## Crear modulo (ng generate module)
+# Create a module (ng generate module)
 ng g m module-name
-## Crear componente (ng generate component)
+# Create a component (ng generate component)
 ng g c component-name
-## Crear servicio (ng generate service)
+# Create a service (ng generate service)
 ng g s service-name
 
-## Crear directiva personalizada (ng generate directive)
+# Create a personalized directive  (ng generate directive)
 ng g d directive-name
 
-## Generar pipe (ng generate pipe)
+# Generate pipe (ng generate pipe)
 ng g p pipe-name
 
-## Simulación de creación
+# Create a run simulation
 --dry-run
 
-## Levantar proyecto
+# Start project
 npm start
 
 _________________
 
-# Instalar Bootstrap
+# Install Bootstrap
 npm i bootstrap@5.3.3
 
-## Añadirlo a angular.json
+# Add to angular.json
     "styles": [
       "src/styles.css",
       "node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -45,7 +44,7 @@ npm i bootstrap@5.3.3
     ]
 
 _________________
-# Sistema de cookies
+# Cookie system
 npm i ngx-cookie-service@16.1.0
 
 _________________
@@ -56,12 +55,16 @@ npm install @angular/animations --save
 npm i notyf
 
 
-# Compilador sass
+# Sass compilator
 npm install node-sass sass-loader --save-dev
 
-# Chart gráficos
+# Chart graphycs
 npm install chart.js
 
-# Fechas
+# Dates
 npm install moment
 npm install date-fns
+
+_________________
+# RxJS is a library for composing asynchronous and event-based programs by using observable sequences
+npm install rxjs

@@ -1,13 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-app-root {
-    z-index: 1;
-}
-
-body {
-    background-color: var(--background-color);
-}
-
 .basics {
 
     /* basic colors */
