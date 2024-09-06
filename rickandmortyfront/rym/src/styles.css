@@ -4,9 +4,11 @@ app-root {
     z-index: 1;
 }
 
+body {
+    background-color: var(--background-color);
+}
+
 .basics {
-    color: white;
-    font-family: "Lexend", sans-serif;
 
     /* basic colors */
     --background-color: #161814ff;
@@ -23,5 +25,12 @@ app-root {
     --medium-green: #68ac52ff;
     --light-green-moss: #7bbb6bff;
     --dark-green-leaf: #355728ff;
+
+    /* basic style */
+    background-color: var(--background-color);
+    color: white;
+    font-family: "Lexend", sans-serif;
+
+
 
 }

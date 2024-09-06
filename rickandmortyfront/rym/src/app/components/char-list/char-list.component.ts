@@ -10,6 +10,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class CharListComponent {
   private apiService = inject(ApiService);
 
+  ngOnInit(): void {
+    this.obtainPublicData();
+  }
 
   obtainPublicData() {
     this.apiService.getAllCharacters().subscribe({
