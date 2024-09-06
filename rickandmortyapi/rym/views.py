@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, pagination
 from rym.models import *
 from rym.serializers import *
 
-# models viewsets 
 
+
+# Models viewsets 
 class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `retrieve` actions.
@@ -18,6 +19,7 @@ class EpisodeViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Episode.objects.all()
     serializer_class = EpisodeSerializer
+
     
 class CharacterViewSet(viewsets.ReadOnlyModelViewSet):
     """
