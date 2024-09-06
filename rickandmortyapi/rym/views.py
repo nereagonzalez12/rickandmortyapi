@@ -3,8 +3,6 @@ from rest_framework import viewsets, pagination
 from rym.models import *
 from rym.serializers import *
 
-
-
 # Models viewsets 
 class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     """

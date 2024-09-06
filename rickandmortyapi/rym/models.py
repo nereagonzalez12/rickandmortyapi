@@ -1,6 +1,6 @@
 from django.db import models
 
-# Location model
+### LOCATION MODEL
 class Location(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField()    
@@ -13,7 +13,7 @@ class Location(models.Model):
     class Meta:
         ordering = ["id"]
     
-# Episode model
+### EPISODE MODEL
 class Episode(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField()    
@@ -26,7 +26,7 @@ class Episode(models.Model):
     class Meta:
         ordering = ["id"]
         
-# Character model
+### CHARACTER MODEL
 class Character(models.Model):
     CHAR_STATUS = {
         "Alive": "Alive",
