@@ -2,7 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ICharacter } from '../models/character.model';
-import { CHARACTER_URL } from './global';
+import { ILocation } from '../models/location.model';
+import { CHARACTER_URL, LOCATION_URL } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { CHARACTER_URL } from './global';
 export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
-  /* GET */
+  /* GET ALL CHARACTERS */
   public getAllCharacters(): Observable<ICharacter[]> {
     return this._httpClient.get<ICharacter[]>(`${CHARACTER_URL}`).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -21,8 +22,9 @@ export class ApiService {
     );
   }
 
-  public getCharacter(id: number): Observable<ICharacter[]> {
-    return this._httpClient.get<ICharacter[]>(`${CHARACTER_URL}${id}/`).pipe(
+  /* GET ONE CHARACTER */
+  public getCharacter(id: number): Observable<ICharacter> {
+    return this._httpClient.get<ICharacter>(`${CHARACTER_URL}${id}/`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);
@@ -30,4 +32,27 @@ export class ApiService {
       })
     );
   }
+
+  /* GET LOCATIONS COUNT */
+  public getLocationCount(): Observable<Number> {
+    return this._httpClient.get<Number>(`${LOCATION_URL}/`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
+  /* GET ONE LOCATION */
+  public getLocation(id: number): Observable<ILocation> {
+    return this._httpClient.get<ILocation>(`${LOCATION_URL}${id}/`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
 }

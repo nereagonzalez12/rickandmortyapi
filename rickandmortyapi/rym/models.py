@@ -4,7 +4,8 @@ from django.db import models
 class Location(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField()    
-    type = models.CharField()    
+    type = models.CharField()   
+    image = models.URLField(null=True)   
     dimension = models.CharField()    
     
     def __str__(self):

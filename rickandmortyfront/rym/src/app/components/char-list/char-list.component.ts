@@ -15,6 +15,7 @@ export class CharListComponent {
     console.log('ola');
     this.obtainPublicData();
     this.obtainCharacterData(1);
+    this.obtainRandomLocations(126);
   }
 
   obtainPublicData() {
@@ -32,12 +33,17 @@ export class CharListComponent {
   obtainCharacterData(id: number) {
     /* Subscribe to the API server with id to fetch character data */
     this.apiService.getCharacter(id).subscribe({
-      next: (data: ICharacter[]) => {
+      next: (data: ICharacter) => {
         console.log(data);
       },
       error: (error: any) => {
         console.log(error);
       }
     });
+  }
+
+  obtainRandomLocations(id: number) {
+    /* Subscribe to the API server with id to fetch character data */
+    this.apiService.getLocations(id);
   }
 }

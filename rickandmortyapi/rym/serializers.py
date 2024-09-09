@@ -7,10 +7,11 @@ class LocationSerializer(serializers.Serializer):
     name = serializers.CharField()
     type = serializers.CharField()
     dimension = serializers.CharField()
+    image = serializers.CharField()
     
     class Meta:
         model = Location
-        fields = ["id", "name", "type", "dimension"]
+        fields = ["id", "name", "type", "dimension", "image"]
     
 # EPISODE SERIALIZER
 class EpisodeSerializer(serializers.Serializer):
