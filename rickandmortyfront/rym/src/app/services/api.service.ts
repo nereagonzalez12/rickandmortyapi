@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ICharacter } from '../models/character.model';
 import { ILocation } from '../models/location.model';
+import { IResponse } from '../models/response.model';
 import { CHARACTER_URL, LOCATION_URL } from './global';
 
 @Injectable({
@@ -34,8 +35,8 @@ export class ApiService {
   }
 
   /* GET LOCATIONS COUNT */
-  public getLocationCount(): Observable<Number> {
-    return this._httpClient.get<Number>(`${LOCATION_URL}/`).pipe(
+  public getLocationCount(): Observable<IResponse> {
+    return this._httpClient.get<IResponse>(`${LOCATION_URL}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

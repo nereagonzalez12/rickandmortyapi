@@ -66,3 +66,6 @@ npm install moment
 npm install date-fns
 
 _________________
+
+# RxJS is a library for composing asynchronous and event-based programs by using observable sequences
+npm install rxjs
