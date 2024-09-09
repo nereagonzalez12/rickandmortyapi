@@ -20,4 +20,14 @@ export class ApiService {
       })
     );
   }
+
+  public getCharacter(id: number): Observable<ICharacter[]> {
+    return this._httpClient.get<ICharacter[]>(`${CHARACTER_URL}${id}/`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
 }

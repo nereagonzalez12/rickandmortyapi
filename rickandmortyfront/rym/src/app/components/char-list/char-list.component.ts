@@ -13,12 +13,25 @@ export class CharListComponent {
   ngOnInit(): void {
 
     console.log('ola');
-    // this.obtainPublicData();
+    this.obtainPublicData();
+    this.obtainCharacterData(1);
   }
 
   obtainPublicData() {
     /* Subscribe to the API server to fetch data */
     this.apiService.getAllCharacters().subscribe({
+      next: (data: ICharacter[]) => {
+        console.log(data);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+
+  obtainCharacterData(id: number) {
+    /* Subscribe to the API server with id to fetch character data */
+    this.apiService.getCharacter(id).subscribe({
       next: (data: ICharacter[]) => {
         console.log(data);
       },
