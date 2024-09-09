@@ -12,10 +12,6 @@ export class CharListComponent {
 
   ngOnInit(): void {
 
-    console.log('ola');
-    this.obtainPublicData();
-    this.obtainCharacterData(1);
-    this.obtainRandomLocations(126);
   }
 
   obtainPublicData() {
@@ -42,8 +38,4 @@ export class CharListComponent {
     });
   }
 
-  obtainRandomLocations(id: number) {
-    /* Subscribe to the API server with id to fetch character data */
-    this.apiService.getLocations(id);
-  }
 }
