@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+body {
+    margin: 0;
+}
+
 .basics {
 
     /* basic colors */
@@ -19,10 +23,10 @@
     --dark-green-leaf: #355728ff;
 
     /* basic style */
-    background-color: var(--background-color);
-    color: white;
     font-family: "Lexend", sans-serif;
 
-    margin: 0;
+    /* screen size */
+    --screen-heigh: 100vh;
+    --screen-with: 100vw;
 
 }
