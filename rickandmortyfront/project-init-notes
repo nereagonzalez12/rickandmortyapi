@@ -47,6 +47,9 @@ npm i bootstrap@5.3.3
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 
+# Install Flowbite -> https://flowbite.com/docs/getting-started/quickstart/
+npm install flowbite
+
 _________________
 
 # RxJS is a library for composing asynchronous and event-based programs by using observable sequences
