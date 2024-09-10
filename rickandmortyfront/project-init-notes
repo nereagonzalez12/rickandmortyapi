@@ -43,27 +43,9 @@ npm i bootstrap@5.3.3
       "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ]
 
-_________________
-# Cookie system
-npm i ngx-cookie-service@16.1.0
-
-_________________
-# Toast
-npm install ngx-toastr --save
-npm install @angular/animations --save
-
-npm i notyf
-
-
-# Sass compilator
-npm install node-sass sass-loader --save-dev
-
-# Chart graphycs
-npm install chart.js
-
-# Dates
-npm install moment
-npm install date-fns
+# Install Tailwind -> https://tailwindcss.com/docs/guides/angular
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
 
 _________________
 
