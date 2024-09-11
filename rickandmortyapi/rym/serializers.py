@@ -7,7 +7,7 @@ class LocationSerializer(serializers.Serializer):
     name = serializers.CharField()
     type = serializers.CharField()
     dimension = serializers.CharField()
-    image = serializers.CharField()
+    image = serializers.ImageField()
     
     class Meta:
         model = Location

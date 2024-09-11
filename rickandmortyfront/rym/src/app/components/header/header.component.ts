@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ILocation } from 'src/app/models/location.model';
 import { IResponse } from 'src/app/models/response.model';
@@ -13,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class HeaderComponent {
   private apiService = inject(ApiService);
   locationList: ILocation[] = [];
+
+  constructor(private _httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.obtainLocationsCount();
@@ -31,8 +34,8 @@ export class HeaderComponent {
   }
 
   obtainRandomLocations(count: number) {
-    // Obtain 20 random locations for the slider
-    const PLACES_COUNT = 20;
+    // Obtain 10 random locations for the slider
+    const PLACES_COUNT = 10;
 
     const fetchLocation = () => {
       if (this.locationList.length < PLACES_COUNT) {
@@ -57,6 +60,8 @@ export class HeaderComponent {
     // First call
     fetchLocation();
   }
+
+
 
 
 }
