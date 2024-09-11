@@ -1,6 +1,11 @@
 <div id="controls-carousel" class="relative w-full" data-carousel="static">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden md:h-96">
+        <div [class.hidden]="!location" class="duration-700 ease-in-out" data-carousel-item>
+            <p *ngIf="location && location.image">{{location.image}}</p>
+            <img *ngIf="location && location.image" src="{{location.image}}"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="item 1">
+        </div>
         <!-- Item 1 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out" data-carousel-item>
             <img *ngIf="locationList[0] && locationList[0].image" src="{{locationList[0].image}}"

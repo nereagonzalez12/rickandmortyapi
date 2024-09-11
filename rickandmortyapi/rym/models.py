@@ -1,11 +1,15 @@
 from django.db import models
+from django.conf import settings
+import os
+
 
 ### LOCATION MODEL
 class Location(models.Model):
+
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField()    
     type = models.CharField()   
-    image = models.ImageField(null=True)   
+    image = models.ImageField(blank=True, null=True, upload_to='media/locations/')   
     dimension = models.CharField()    
     
     def __str__(self):

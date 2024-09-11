@@ -56,4 +56,14 @@ export class ApiService {
     );
   }
 
+  public get1Location(): Observable<ILocation> {
+    return this._httpClient.get<ILocation>(`${LOCATION_URL}1/`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
 }

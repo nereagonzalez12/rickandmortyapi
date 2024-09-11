@@ -14,10 +14,12 @@ import { ApiService } from 'src/app/services/api.service';
 export class HeaderComponent {
   private apiService = inject(ApiService);
   locationList: ILocation[] = [];
+  location?: ILocation;
 
   constructor(private _httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.obtain1Location();
     this.obtainLocationsCount();
   }
 
@@ -26,6 +28,18 @@ export class HeaderComponent {
     this.apiService.getLocationCount().subscribe({
       next: (data: IResponse) => {
         this.obtainRandomLocations(data.count);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+
+  obtain1Location() {
+    /* Subscribe to the API server to fetch response data */
+    this.apiService.get1Location().subscribe({
+      next: (data: ILocation) => {
+        this.location = data;
       },
       error: (error: any) => {
         console.log(error);

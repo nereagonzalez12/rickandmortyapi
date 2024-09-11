@@ -9,3 +9,6 @@ django-cors-headers==4.4.0
 
 # Json progression bar
 tqdm==4.66.5
+
+# Image fields
+pillow==10.4.0

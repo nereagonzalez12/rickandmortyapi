@@ -4,7 +4,7 @@ from rym.models import *
 from rym.serializers import *
 
 # Models viewsets 
-class LocationViewSet(viewsets.ReadOnlyModelViewSet):
+class LocationViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `retrieve` actions.
     """
