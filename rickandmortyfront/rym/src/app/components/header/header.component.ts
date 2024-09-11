@@ -5,13 +5,12 @@ import { IResponse } from 'src/app/models/response.model';
 import { ApiService } from 'src/app/services/api.service';
 import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
 
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent {
   private apiService = inject(ApiService);
   locationList: ILocation[] = [];

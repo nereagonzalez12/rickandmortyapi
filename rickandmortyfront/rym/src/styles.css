@@ -5,6 +5,7 @@
 
 body {
     margin: 0;
+    height: 100vh;
 }
 
 .basics {
@@ -31,5 +32,6 @@ body {
     /* screen size */
     --screen-heigh: 100vh;
     --screen-with: 100vw;
+
 
 }
