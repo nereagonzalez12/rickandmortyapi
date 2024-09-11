@@ -50,6 +50,8 @@ npx tailwindcss init
 # Install Flowbite -> https://flowbite.com/docs/getting-started/quickstart/
 npm install flowbite
 
+# Install daisyUI as a Tailwind CSS plugin -> https://daisyui.com/docs/install/
+npm i -D daisyui@latest
 _________________
 
 # RxJS is a library for composing asynchronous and event-based programs by using observable sequences

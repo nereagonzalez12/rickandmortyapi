@@ -44,13 +44,13 @@ export class HeaderComponent {
         const RANDOM_NUMBER = Math.ceil(Math.random() * (count - 1) + 1);
         this.apiService.getLocation(RANDOM_NUMBER).subscribe({
           next: (data: ILocation) => {
+            if (data.image === null) {
+              // default location image
+              data.image = DEFAULT_LOCATION_IMG;
+            }
 
             // Prevent duplicates elements in array
             if (!this.locationList.some((element) => element.id === data.id)) {
-              if (data.image === null) {
-                // default location image
-                data.image = DEFAULT_LOCATION_IMG;
-              }
               this.locationList.push(data);
             }
             fetchLocation();

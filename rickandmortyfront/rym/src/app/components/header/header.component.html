@@ -1,84 +1,111 @@
 <div id="controls-carousel" class="absolute top-0 w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h-[60vh] overflow-hidden md:h-[60vh]">
+    <div [class.hidden]="locationList.length >= 1"
+        class="relative h-[70vh] overflow-hidden max-[1155px]:h-[30vh] max-[455px]:h-[25vh]">
+        <div class="absolute w-full h-full flex items-center justify-center">
+            <span class="loading loading-spinner loading-lg text-success"></span>
+        </div>
+    </div>
+    <div [class.hidden]="locationList.length < 1"
+        class="relative h-[70vh] overflow-hidden max-[1155px]:h-[30vh] max-[455px]:h-[25vh]">
         <!-- Item 1 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
-            <img *ngIf="locationList[0] && locationList[0].image " src="{{locationList[0].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 1">
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[0] && locationList[0].name" class="locationName">{{locationList[0].name}}</p>
+            </span>
+            <img *ngIf="locationList[0] && locationList[0].image" src="{{locationList[0].image}}"
+                class="absolute block w-full brightness-50" alt="item 1">
         </div>
 
         <!-- Item 2 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[1] && locationList[1].name" class="locationName">{{locationList[1].name}}</p>
+            </span>
             <img *ngIf="locationList[1] && locationList[1].image" src="{{locationList[1].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 2">
+                class="absolute block w-full  brightness-50" alt="item 2">
         </div>
 
         <!-- Item 3 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[2] && locationList[2].name" class="locationName">{{locationList[2].name}}</p>
+            </span>
             <img *ngIf="locationList[2] && locationList[2].image" src="{{locationList[2].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 3">
+                class="absolute block w-full  brightness-50" alt="item 3">
         </div>
 
         <!-- Item 4 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[3] && locationList[3].name" class="locationName">{{locationList[3].name}}</p>
+            </span>
             <img *ngIf="locationList[3] && locationList[3].image" src="{{locationList[3].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 4">
+                class="absolute block w-full  brightness-50" alt="item 4">
         </div>
 
         <!-- Item 5 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[4] && locationList[4].name" class="locationName">{{locationList[4].name}}</p>
+            </span>
             <img *ngIf="locationList[4] && locationList[4].image" src="{{locationList[4].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 5">
+                class="absolute block w-full  brightness-50" alt="item 5">
         </div>
 
         <!-- Item 6 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[5] && locationList[5].name" class="locationName">{{locationList[5].name}}</p>
+            </span>
             <img *ngIf="locationList[5] && locationList[5].image" src="{{locationList[5].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 6">
+                class="absolute block w-full  brightness-50" alt="item 6">
         </div>
 
         <!-- Item 7 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[6] && locationList[6].name" class="locationName">{{locationList[6].name}}</p>
+            </span>
             <img *ngIf="locationList[6] && locationList[6].image" src="{{locationList[6].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 7">
+                class="absolute block w-full  brightness-50" alt="item 7">
         </div>
 
         <!-- Item 8 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[7] && locationList[7].name" class="locationName">{{locationList[7].name}}</p>
+            </span>
             <img *ngIf="locationList[7] && locationList[7].image" src="{{locationList[7].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 8">
+                class="absolute block w-full  brightness-50" alt="item 8">
         </div>
 
         <!-- Item 9 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[8] && locationList[8].name" class="locationName">{{locationList[8].name}}</p>
+            </span>
             <img *ngIf="locationList[8] && locationList[8].image" src="{{locationList[8].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 9">
+                class="absolute block w-full  brightness-50" alt="item 9">
         </div>
 
         <!-- Item 10 -->
-        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out drop-shadow-lg"
-            data-carousel-item>
+        <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
+            <span
+                class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
+                <p *ngIf="locationList[9] && locationList[9].name" class="locationName">{{locationList[9].name}}</p>
+            </span>
             <img *ngIf="locationList[9] && locationList[9].image" src="{{locationList[9].image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 brightness-50"
-                alt="item 10">
+                class="absolute block w-full  brightness-50" alt="item 10">
         </div>
 
 
