@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { IGenericResponse } from 'src/app/models/genericResponse.model';
 import { ILocation } from 'src/app/models/location.model';
-import { IResponse } from 'src/app/models/response.model';
 import { ApiService } from 'src/app/services/api.service';
 import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
 
@@ -16,8 +15,6 @@ export class HeaderComponent {
   locationList: ILocation[] = [];
   location?: ILocation;
 
-  constructor(private _httpClient: HttpClient) { }
-
   ngOnInit(): void {
     this.obtainLocationsCount();
   }
@@ -25,7 +22,7 @@ export class HeaderComponent {
   obtainLocationsCount() {
     /* Subscribe to the API server to fetch response data */
     this.apiService.getLocationCount().subscribe({
-      next: (data: IResponse) => {
+      next: (data: IGenericResponse) => {
         this.obtainRandomLocations(data.count);
       },
       error: (error: any) => {

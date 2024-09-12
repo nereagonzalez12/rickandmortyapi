@@ -2,8 +2,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ICharacter } from '../models/character.model';
+import { ICharacterResponse } from '../models/characterResponse.model';
+import { IGenericResponse } from '../models/genericResponse.model';
 import { ILocation } from '../models/location.model';
-import { IResponse } from '../models/response.model';
 import { CHARACTER_URL, LOCATION_URL } from './global';
 
 @Injectable({
@@ -13,8 +14,8 @@ export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
   /* GET ALL CHARACTERS */
-  public getAllCharacters(): Observable<ICharacter[]> {
-    return this._httpClient.get<ICharacter[]>(`${CHARACTER_URL}`).pipe(
+  public getAllCharacters(): Observable<ICharacterResponse> {
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);
@@ -35,8 +36,8 @@ export class ApiService {
   }
 
   /* GET LOCATIONS COUNT */
-  public getLocationCount(): Observable<IResponse> {
-    return this._httpClient.get<IResponse>(`${LOCATION_URL}`).pipe(
+  public getLocationCount(): Observable<IGenericResponse> {
+    return this._httpClient.get<IGenericResponse>(`${LOCATION_URL}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

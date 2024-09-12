@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ICharacter } from 'src/app/models/character.model';
+import { ICharacterResponse } from 'src/app/models/characterResponse.model';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -8,17 +9,21 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./char-list.component.css']
 })
 export class CharListComponent {
+  characterList: ICharacter[] = [];
+  nextCharacterPage: string = '';
   private apiService = inject(ApiService);
 
   ngOnInit(): void {
-
+    this.obtainCharactersData();
   }
 
-  obtainPublicData() {
+  obtainCharactersData() {
     /* Subscribe to the API server to fetch data */
     this.apiService.getAllCharacters().subscribe({
-      next: (data: ICharacter[]) => {
-        console.log(data);
+      next: (data: ICharacterResponse) => {
+        this.characterList = data.results;
+        this.nextCharacterPage = data.next;
+        console.log(this.characterList[7]);
       },
       error: (error: any) => {
         console.log(error);
