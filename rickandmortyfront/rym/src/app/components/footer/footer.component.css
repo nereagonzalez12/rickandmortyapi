@@ -1,0 +1,45 @@
+/* Footer animations */
+.name,
+.footer-icons {
+    transition: .3s;
+}
+
+.name:hover {
+    border: none;
+    color: var(--light-green-pastel);
+}
+
+.footer-icons:hover {
+    color: var(--light-green-pastel);
+    transform: translate(-100%);
+}
+
+.plumbus-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.plumbus-container img {
+    position: absolute;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.plumbus-container img.plumbus-contour {
+    z-index: 1;
+    opacity: 1;
+}
+
+.plumbus-container img.plumbus {
+    opacity: 0;
+    z-index: 2;
+}
+
+.plumbus-container:hover img.plumbus-contour {
+    opacity: 0;
+}
+
+.plumbus-container:hover img.plumbus {
+    opacity: 1;
+}
