@@ -1,0 +1,16 @@
+/* Card description */
+
+.status-portal {
+    transition: .2s;
+    cursor: pointer;
+}
+
+.status-portal:hover {
+    transform: scale(1.8);
+    margin-right: 0.8em;
+}
+
+.status-portal:active {
+    transform: scale(1.2);
+    margin-right: 0.8em;
+}
