@@ -13,17 +13,6 @@ import { CHARACTER_URL, LOCATION_URL } from './global';
 export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
-  /* GET ALL CHARACTERS */
-  public getAllCharacters(): Observable<ICharacterResponse> {
-    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}`).pipe(
-      catchError((error: HttpErrorResponse) => {
-        // handle errors
-        console.log(error);
-        return throwError(() => new Error());
-      })
-    );
-  }
-
   /* GET ALL CHARACTERS WITH PAGE */
   public getCharactersPage(page: string): Observable<ICharacterResponse> {
     return this._httpClient.get<ICharacterResponse>(page).pipe(

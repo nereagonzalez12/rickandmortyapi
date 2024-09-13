@@ -1,9 +1,7 @@
 import { ICharacter } from "./character.model";
+import { ICharacterInfo } from "./characterInfo.models";
 
 export interface ICharacterResponse {
-    count: number;
-    next: string;
-    previous: string;
-    pages: number;
+    info: ICharacterInfo;
     results: ICharacter[];
 }
