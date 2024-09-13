@@ -66,6 +66,6 @@ export class CharListComponent {
   previousPage() {
     this.actualPage = Number(sessionStorage.getItem('pageNumber')) - 1;
     this.obtainCharactersPageData(CHARACTER_PAGE_URL + this.actualPage);
-
   }
+
 }

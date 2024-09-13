@@ -27,3 +27,14 @@
     transform: scale(1.2);
     margin-right: 0.8em;
 }
+
+/* Up button */
+.up-button {
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 0.4);
+    transition: 0.2s;
+}
+
+.up-button:hover {
+    color: var(--light-green-moss);
+    transform: scale(0.9);
+}

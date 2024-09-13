@@ -27,7 +27,7 @@
 }
 
 #github-button:hover svg {
-    fill: var(--medium-green);
+    fill: var(--light-green-moss);
 }
 
 #linkeding-button:hover svg {
