@@ -1,5 +1,18 @@
-/* Card description */
+/* Inputs */
+::placeholder {
+    color: var(--dark-color-2);
+}
 
+.search-button {
+    transition: .2s;
+}
+
+.search-button:hover {
+    background-color: var(--medium-green);
+    transform: scale(0.9);
+}
+
+/* Card description */
 .status-portal {
     transition: .2s;
     cursor: pointer;
