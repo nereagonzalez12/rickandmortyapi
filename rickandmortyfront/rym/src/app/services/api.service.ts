@@ -24,6 +24,17 @@ export class ApiService {
     );
   }
 
+  /* GET ALL CHARACTERS WITH PAGE */
+  public getCharactersPage(page: string): Observable<ICharacterResponse> {
+    return this._httpClient.get<ICharacterResponse>(page).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
   /* GET ONE CHARACTER */
   public getCharacter(id: number): Observable<ICharacter> {
     return this._httpClient.get<ICharacter>(`${CHARACTER_URL}${id}/`).pipe(

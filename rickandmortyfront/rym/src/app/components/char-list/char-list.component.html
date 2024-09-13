@@ -159,11 +159,19 @@
         </form>
 
         <div class="join flex items-center justify-center md:justify-end max-w-md mb-4">
-            <button class="join-item btn">1</button>
-            <button class="join-item btn">2</button>
-            <button class="join-item btn btn-disabled">...</button>
-            <button class="join-item btn">99</button>
-            <button class="join-item btn">100</button>
+            <button *ngIf="previpusCharacterPage && previpusCharacterPage != null" (click)="previousPage()"
+                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">«</button>
+            <button *ngIf="!previpusCharacterPage || previpusCharacterPage == null"
+                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
+                disabled>«</button>
+            <button
+                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">Page
+                {{actualPage}}</button>
+            <button *ngIf="nextCharacterPage && nextCharacterPage != null" (click)="nextPage()"
+                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">»</button>
+            <button *ngIf="!nextCharacterPage || nextCharacterPage == null"
+                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
+                disabled>»</button>
         </div>
     </div>
 

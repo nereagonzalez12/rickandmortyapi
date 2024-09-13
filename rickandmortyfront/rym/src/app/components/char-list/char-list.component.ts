@@ -10,7 +10,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CharListComponent {
   characterList: ICharacter[] = [];
-  nextCharacterPage: string = '';
+  nextCharacterPage: string | null = null;
+  previpusCharacterPage: string | null = null;
+  actualPage: number = 1;
   private apiService = inject(ApiService);
 
   ngOnInit(): void {
@@ -23,7 +25,29 @@ export class CharListComponent {
       next: (data: ICharacterResponse) => {
         this.characterList = data.results;
         this.nextCharacterPage = data.next;
-        console.log(this.characterList[7]);
+        this.previpusCharacterPage = data.previous;
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+
+  obtainCharactersPageData(page: string) {
+    /* Subscribe to the API server to fetch data */
+    this.apiService.getCharactersPage(page).subscribe({
+      next: (data: ICharacterResponse) => {
+        this.characterList = data.results;
+        this.nextCharacterPage = data.next;
+        // if there isn't next page, add the actual page +1 to get the final page 
+        if (data.next === null) {
+          this.actualPage++;
+        } else {
+          let nextNumberPage = this.nextCharacterPage.split("=");
+          this.actualPage = Number(nextNumberPage[1]) - 1;
+        }
+
+        this.previpusCharacterPage = data.previous;
       },
       error: (error: any) => {
         console.log(error);
@@ -43,4 +67,16 @@ export class CharListComponent {
     });
   }
 
+  // Page movement
+  nextPage() {
+    if (this.nextCharacterPage != null) {
+      this.obtainCharactersPageData(this.nextCharacterPage);
+    }
+  }
+
+  previousPage() {
+    if (this.previpusCharacterPage != null) {
+      this.obtainCharactersPageData(this.previpusCharacterPage);
+    }
+  }
 }
