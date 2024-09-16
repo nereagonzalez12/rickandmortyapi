@@ -5,7 +5,7 @@ import { ICharacter } from '../models/character.model';
 import { ICharacterResponse } from '../models/characterResponse.model';
 import { IGenericResponse } from '../models/genericResponse.model';
 import { ILocation } from '../models/location.model';
-import { CHARACTER_URL, LOCATION_URL, PAGE_PARAMETER } from './global';
+import { CHARACTER_URL, LOCATION_URL, NAME_PARAMETER, PAGE_PARAMETER } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,18 @@ export class ApiService {
   /* GET ONE LOCATION */
   public getLocation(id: number): Observable<ILocation> {
     return this._httpClient.get<ILocation>(`${LOCATION_URL}${id}/`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
+  /* SEARCH FILTERS */
+  public getCharactersPageFilters(page: number, name: string): Observable<ICharacterResponse> {
+    console.log(`${CHARACTER_URL}${PAGE_PARAMETER}${page}`);
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

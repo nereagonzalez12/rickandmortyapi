@@ -27,30 +27,60 @@ export class CharListComponent {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     if (this.actualPage < 1) {
       this.actualPage = 1;
     }
-    this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
+
+    // Clear session storage
+    if (sessionStorage.getItem('nameParameter')) {
+      this.removeStorage();
+    } else {
+      console.log('aaa');
+      this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
+    }
   }
 
-  obtainCharactersPageData(page: number) {
-    /* Subscribe to the API server to fetch data */
+  removeStorage() {
+    sessionStorage.removeItem('pageNumber');
+    sessionStorage.removeItem('nameParameter');
+    this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
+
+  }
+  obtainCharactersPageData(page: number, name?: string) {
     console.log(page);
-    this.apiService.getCharactersPage(page).subscribe({
-      next: (data: ICharacterResponse) => {
-        this.characterList = data.results;
-        this.nextCharacterPage = data.next;
-        this.previousCharacterPage = data.previous;
-        this.actualPage = data.page_number;
-        console.log(data);
-        // Save actual page in Sesion Storage
-        sessionStorage.setItem('pageNumber', String(this.actualPage));
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
+    /* Subscribe to the API server to fetch data */
+    if (name) {
+      this.apiService.getCharactersPageFilters(page, name).subscribe({
+        next: (data: ICharacterResponse) => {
+          this.characterList = data.results;
+          this.nextCharacterPage = data.next;
+          this.previousCharacterPage = data.previous;
+          this.actualPage = data.page_number;
+          // Save actual page in Sesion Storage
+          sessionStorage.setItem('pageNumber', String(this.actualPage));
+          sessionStorage.setItem('nameParameter', String(name));
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
+    } else {
+
+      this.apiService.getCharactersPage(page).subscribe({
+        next: (data: ICharacterResponse) => {
+          this.characterList = data.results;
+          this.nextCharacterPage = data.next;
+          this.previousCharacterPage = data.previous;
+          this.actualPage = data.page_number;
+          // Save actual page in Sesion Storage
+          sessionStorage.setItem('pageNumber', String(this.actualPage));
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
+    }
   }
 
   obtainCharacterData(id: number) {
@@ -68,23 +98,38 @@ export class CharListComponent {
   // Pagination functions 
   nextPage() {
     let stringPageNumber = sessionStorage.getItem('pageNumber');
+    let nameParameter = sessionStorage.getItem('nameParameter');
+
     if (stringPageNumber != null) {
       this.actualPage = +stringPageNumber;
-      this.obtainCharactersPageData(this.actualPage + 1);
+      if (nameParameter) {
+        this.obtainCharactersPageData(this.actualPage + 1, nameParameter);
+      } else {
+        this.obtainCharactersPageData(this.actualPage + 1);
+      }
     }
   }
 
   previousPage() {
     let stringPageNumber = sessionStorage.getItem('pageNumber');
+    let nameParameter = sessionStorage.getItem('nameParameter');
+
     if (stringPageNumber != null) {
       this.actualPage = +stringPageNumber;
-      this.obtainCharactersPageData(this.actualPage - 1);
+      if (nameParameter) {
+        this.obtainCharactersPageData(this.actualPage - 1, nameParameter);
+      } else {
+        this.obtainCharactersPageData(this.actualPage - 1);
+      }
     }
   }
 
   // Seach input
   searchCharacterInput() {
-    this.actualPage = Number(sessionStorage.getItem('pageNumber')) | 1;
+    this.actualPage = 1;
+    this.obtainCharactersPageData(this.actualPage, this.searchForm.get('parameter')?.value);
+
   }
+
 
 }
