@@ -3,7 +3,7 @@
 
 
     <div class="pt-4 flex md:justify-between row justify-center items-center md:flex-wrap mb-8">
-        <form class="flex items-center max-w-md mb-4">
+        <form [formGroup]="searchForm" class="flex items-center max-w-md mb-4">
             <div class="flex w-full">
 
                 <button id="dropdown-button" data-dropdown-toggle="dropdown"
@@ -60,10 +60,10 @@
                     </ul>
                 </div>
                 <div class="relative w-full">
-                    <input type="search" id="search-dropdown"
+                    <input type="text" id="search-dropdown" type="text" formControlName="parameter" name="searchQuery"
                         class="rounded-e-lg bg-background-color text-light-color text-sm focus:ring-light-green-moss focus:border-light-green-pastel block w-full p-2.5  "
                         placeholder="Who has my plumbus?" required autocomplete="off" />
-                    <button type="submit"
+                    <button type="submit" (click)="searchCharacterInput()"
                         class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white rounded-e-lg search-button ms-2 bg-light-green-moss focus:ring-4 focus:outline-none focus:ring-light-green-moss ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 64 64" fill="white">
                             <path

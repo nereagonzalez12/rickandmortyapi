@@ -14,8 +14,9 @@ export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
   /* GET ALL CHARACTERS WITH PAGE */
-  public getCharactersPage(page: string): Observable<ICharacterResponse> {
-    return this._httpClient.get<ICharacterResponse>(page).pipe(
+  public getCharactersPage(page: string, name: string): Observable<ICharacterResponse> {
+    console.log(`${page}/?name=${name}`);
+    return this._httpClient.get<ICharacterResponse>(`${page}&name=${name}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);
@@ -57,15 +58,5 @@ export class ApiService {
     );
   }
 
-  /* SEARCH FILTERS */
-  // Search by name
-  searchCharacter(query: string) {
-    return this._httpClient.get<ICharacter[]>(`${CHARACTER_URL}/?name=${query}`).pipe(
-      catchError((error: any) => {
-        console.log(error);
-        return throwError(() => new Error());
-      })
-    );
-  }
 
 }

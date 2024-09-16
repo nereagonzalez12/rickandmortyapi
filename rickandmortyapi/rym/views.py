@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets, pagination
+from rym.pagination import CustomPagination
 from rym.filters import CharacterFilter
 from rym.models import *
 from rym.serializers import *
@@ -30,4 +31,6 @@ class CharacterViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CharacterSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = CharacterFilter
+    pagination_class = CustomPagination
+    
     
