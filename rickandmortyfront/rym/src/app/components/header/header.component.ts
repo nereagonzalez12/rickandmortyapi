@@ -11,9 +11,11 @@ import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
 })
 
 export class HeaderComponent {
-  private apiService = inject(ApiService);
+  // Location carousel
   locationList: ILocation[] = [];
   location?: ILocation;
+  // Service
+  private apiService = inject(ApiService);
 
   ngOnInit(): void {
     this.obtainLocationsCount();

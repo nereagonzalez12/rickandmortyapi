@@ -57,5 +57,15 @@ export class ApiService {
     );
   }
 
+  /* SEARCH FILTERS */
+  // Search by name
+  searchCharacter(query: string) {
+    return this._httpClient.get<ICharacter[]>(`${CHARACTER_URL}/?name=${query}`).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
 
 }
