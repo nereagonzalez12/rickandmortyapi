@@ -1,8 +1,10 @@
 import { ICharacter } from "./character.model";
 
 export interface ICharacterResponse {
-    count: number;
+    items_count: number;
+    total_pages: number;
+    page_number: number;
     next: string;
-    prev: string;
+    previous: string;
     results: ICharacter[];
 }

@@ -5,7 +5,7 @@ import { ICharacter } from '../models/character.model';
 import { ICharacterResponse } from '../models/characterResponse.model';
 import { IGenericResponse } from '../models/genericResponse.model';
 import { ILocation } from '../models/location.model';
-import { CHARACTER_URL, LOCATION_URL } from './global';
+import { CHARACTER_URL, LOCATION_URL, PAGE_PARAMETER } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,9 @@ export class ApiService {
   constructor(private _httpClient: HttpClient) { }
 
   /* GET ALL CHARACTERS WITH PAGE */
-  public getCharactersPage(page: string, name: string): Observable<ICharacterResponse> {
-    console.log(`${page}/?name=${name}`);
-    return this._httpClient.get<ICharacterResponse>(`${page}&name=${name}`).pipe(
+  public getCharactersPage(page: number): Observable<ICharacterResponse> {
+    console.log(`${CHARACTER_URL}${PAGE_PARAMETER}${page}`);
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

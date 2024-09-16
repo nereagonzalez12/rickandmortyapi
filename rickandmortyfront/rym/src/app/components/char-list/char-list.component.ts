@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
 import { ApiService } from 'src/app/services/api.service';
-import { CHARACTER_PAGE_URL } from 'src/app/services/global';
 
 @Component({
   selector: 'app-char-list',
@@ -15,7 +14,7 @@ export class CharListComponent {
   // Pagination
   nextCharacterPage: string | null = null;
   previousCharacterPage: string | null = null;
-  actualPage: number = Number(sessionStorage.getItem('pageNumber')) | 1;
+  actualPage: number = Number(sessionStorage.getItem('pageNumber'));
   // Search inputs
   searchForm: FormGroup;
   searchQuery: string = '';
@@ -29,26 +28,24 @@ export class CharListComponent {
   }
 
   ngOnInit(): void {
-    this.obtainCharactersPageData(CHARACTER_PAGE_URL + Number(sessionStorage.getItem('pageNumber')), this.searchQuery);
+    if (this.actualPage < 1) {
+      this.actualPage = 1;
+    }
+    this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
   }
 
-  obtainCharactersPageData(page: string, parameter: string) {
+  obtainCharactersPageData(page: number) {
     /* Subscribe to the API server to fetch data */
-    this.apiService.getCharactersPage(page, parameter).subscribe({
+    console.log(page);
+    this.apiService.getCharactersPage(page).subscribe({
       next: (data: ICharacterResponse) => {
         this.characterList = data.results;
         this.nextCharacterPage = data.next;
-        this.previousCharacterPage = data.prev;
-
-        if (this.nextCharacterPage != null) {
-          let nextNumberPage = this.nextCharacterPage.split("=");
-          this.actualPage = Number(nextNumberPage[1]) - 1;
-        } else {
-          this.actualPage = 42;
-        }
-
+        this.previousCharacterPage = data.previous;
+        this.actualPage = data.page_number;
+        console.log(data);
         // Save actual page in Sesion Storage
-        sessionStorage.setItem('pageNumber', JSON.stringify(this.actualPage));
+        sessionStorage.setItem('pageNumber', String(this.actualPage));
       },
       error: (error: any) => {
         console.log(error);
@@ -70,19 +67,24 @@ export class CharListComponent {
 
   // Pagination functions 
   nextPage() {
-    this.actualPage = Number(sessionStorage.getItem('pageNumber')) + 1;
-    this.obtainCharactersPageData(CHARACTER_PAGE_URL + this.actualPage, this.searchQuery);
+    let stringPageNumber = sessionStorage.getItem('pageNumber');
+    if (stringPageNumber != null) {
+      this.actualPage = +stringPageNumber;
+      this.obtainCharactersPageData(this.actualPage + 1);
+    }
   }
 
   previousPage() {
-    this.actualPage = Number(sessionStorage.getItem('pageNumber')) - 1;
-    this.obtainCharactersPageData(CHARACTER_PAGE_URL + this.actualPage, this.searchQuery);
+    let stringPageNumber = sessionStorage.getItem('pageNumber');
+    if (stringPageNumber != null) {
+      this.actualPage = +stringPageNumber;
+      this.obtainCharactersPageData(this.actualPage - 1);
+    }
   }
 
   // Seach input
   searchCharacterInput() {
     this.actualPage = Number(sessionStorage.getItem('pageNumber')) | 1;
-    this.obtainCharactersPageData(CHARACTER_PAGE_URL + this.actualPage, this.searchForm.get('parameter')?.value);
   }
 
 }
