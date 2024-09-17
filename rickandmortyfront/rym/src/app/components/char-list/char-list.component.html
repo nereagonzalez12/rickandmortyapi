@@ -1,4 +1,4 @@
-<div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 ">
+<div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 " id="charListContainer">
     <!-- Search inputs -->
 
 
@@ -107,7 +107,6 @@
     <!-- Empty page-->
     <div role="status" [class.hidden]="characterList.length > 0 || loadingCards"
         class="w-full h-full flex items-center justify-center p-8">
-
         <img src="assets/svg/empty-page.svg" class="w-1/2 pt-4">
     </div>
     <!-- CARDS -->
@@ -168,8 +167,8 @@
     </div>
 </div>
 <!-- Scroll to top -->
-<a href="" [class.hidden]="characterList.length < 1" class="w-full flex justify-center">
-    <button id="github-button" type="button" data-twe-ripple-init data-twe-ripple-color="light"
+<div [class.hidden]="characterList.length < 1" class="w-full flex justify-center">
+    <button id="scrollButton" type="button" data-twe-ripple-init data-twe-ripple-color="light" (click)="scrollToTop()"
         class="up-button md:mt-2 mr-2 inline-block rounded bg-background-color px-3 py-1.5 md:py-2.5 text-xs font-medium uppercase leading-normal text-light-color shadow-inner transition duration-150 ease-in-out hover:shadow-xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
         <span class="[&>svg]:h-3 [&>svg]:w-3 md:[&>svg]:h-5 md:[&>svg]:w-7">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -182,4 +181,4 @@
             </svg>
         </span>
     </button>
-</a>
+</div>

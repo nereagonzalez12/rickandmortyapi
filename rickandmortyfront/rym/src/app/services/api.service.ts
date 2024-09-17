@@ -60,7 +60,6 @@ export class ApiService {
 
   /* SEARCH FILTERS */
   public getCharactersPageFilters(page: number, name: string): Observable<ICharacterResponse> {
-    console.log(`${CHARACTER_URL}${PAGE_PARAMETER}${page}`);
     return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors

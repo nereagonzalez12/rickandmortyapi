@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
+import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -21,14 +22,18 @@ export class CharListComponent {
   searchQuery: string = '';
   // Service
   private apiService = inject(ApiService);
+  // Scroll to up
+  @Output() triggerScroll = new EventEmitter<void>();
 
-  constructor(private formBuilder: FormBuilder) {
+  // Form constructor
+  constructor(private formBuilder: FormBuilder, private homeComponent: HomeComponent) {
     this.searchForm = this.formBuilder.group({
       parameter: [''] // Inicialize with an empty parameter
     });
   }
 
   ngOnInit() {
+    // Handler page 0
     if (this.actualPage < 1) {
       this.actualPage = 1;
     }
@@ -38,6 +43,7 @@ export class CharListComponent {
       this.removeStorage();
     }
 
+    // Obtain the characters data in the correct page
     this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
   }
 
@@ -45,6 +51,7 @@ export class CharListComponent {
     sessionStorage.removeItem('pageNumber');
     sessionStorage.removeItem('nameParameter');
   }
+
   obtainCharactersPageData(page: number, name?: string) {
     console.log(page);
     /* Subscribe to the API server to fetch data */
@@ -128,8 +135,11 @@ export class CharListComponent {
   searchCharacterInput() {
     this.actualPage = 1;
     this.obtainCharactersPageData(this.actualPage, this.searchForm.get('parameter')?.value);
-
   }
 
+  // Scroll to top button
+  scrollToTop(): void {
+    this.triggerScroll.emit();
+  }
 
 }
