@@ -27,7 +27,7 @@ export class CharListComponent {
     });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.actualPage < 1) {
       this.actualPage = 1;
     }
@@ -35,22 +35,20 @@ export class CharListComponent {
     // Clear session storage
     if (sessionStorage.getItem('nameParameter')) {
       this.removeStorage();
-    } else {
-      console.log('aaa');
-      this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
     }
+
+    this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
   }
 
   removeStorage() {
     sessionStorage.removeItem('pageNumber');
     sessionStorage.removeItem('nameParameter');
-    this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
-
   }
   obtainCharactersPageData(page: number, name?: string) {
     console.log(page);
     /* Subscribe to the API server to fetch data */
     if (name) {
+      sessionStorage.removeItem('pageNumber');
       this.apiService.getCharactersPageFilters(page, name).subscribe({
         next: (data: ICharacterResponse) => {
           this.characterList = data.results;
@@ -58,7 +56,6 @@ export class CharListComponent {
           this.previousCharacterPage = data.previous;
           this.actualPage = data.page_number;
           // Save actual page in Sesion Storage
-          sessionStorage.setItem('pageNumber', String(this.actualPage));
           sessionStorage.setItem('nameParameter', String(name));
         },
         error: (error: any) => {
@@ -97,28 +94,28 @@ export class CharListComponent {
 
   // Pagination functions 
   nextPage() {
-    let stringPageNumber = sessionStorage.getItem('pageNumber');
     let nameParameter = sessionStorage.getItem('nameParameter');
-
-    if (stringPageNumber != null) {
-      this.actualPage = +stringPageNumber;
-      if (nameParameter) {
-        this.obtainCharactersPageData(this.actualPage + 1, nameParameter);
-      } else {
+    let stringPageNumber = sessionStorage.getItem('pageNumber');
+    if (nameParameter) {
+      // Don't save page in sesion storage with filters
+      this.obtainCharactersPageData(Number(this.actualPage) + 1, nameParameter);
+    } else {
+      if (stringPageNumber != null) {
+        this.actualPage = +stringPageNumber;
         this.obtainCharactersPageData(this.actualPage + 1);
       }
     }
   }
 
   previousPage() {
-    let stringPageNumber = sessionStorage.getItem('pageNumber');
     let nameParameter = sessionStorage.getItem('nameParameter');
-
-    if (stringPageNumber != null) {
-      this.actualPage = +stringPageNumber;
-      if (nameParameter) {
-        this.obtainCharactersPageData(this.actualPage - 1, nameParameter);
-      } else {
+    let stringPageNumber = sessionStorage.getItem('pageNumber');
+    if (nameParameter) {
+      // Don't save page in sesion storage with filters
+      this.obtainCharactersPageData(Number(this.actualPage) - 1, nameParameter);
+    } else {
+      if (stringPageNumber != null) {
+        this.actualPage = +stringPageNumber;
         this.obtainCharactersPageData(this.actualPage - 1);
       }
     }
