@@ -2,7 +2,9 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
+import { ILocation } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-char-list',
@@ -13,6 +15,9 @@ export class CharListComponent {
   characterList: ICharacter[] = [];
   loadingCards: boolean = true;
   speciesSelected: string = 'Species';
+  // Location filter
+  locationFilter?: ILocation;
+  private sharedDataService = inject(SharedDataService);
   // Pagination
   nextCharacterPage: string | null = null;
   previousCharacterPage: string | null = null;
@@ -45,6 +50,12 @@ export class CharListComponent {
 
     // Obtain the characters data in the correct page
     this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
+
+    // Get new location data
+    this.sharedDataService.currentData.subscribe(data => {
+      this.locationFilter = data;
+      console.log(this.locationFilter);
+    });
   }
 
   /* Utils */
@@ -165,8 +176,9 @@ export class CharListComponent {
     this.actualPage = 1;
     this.speciesSelected = species;
     this.obtainCharactersPageData(this.actualPage, '', species);
-
   }
+
+  // Get location
 
 
 }

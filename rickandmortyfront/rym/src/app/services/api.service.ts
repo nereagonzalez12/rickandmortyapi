@@ -5,7 +5,7 @@ import { ICharacter } from '../models/character.model';
 import { ICharacterResponse } from '../models/characterResponse.model';
 import { IGenericResponse } from '../models/genericResponse.model';
 import { ILocation } from '../models/location.model';
-import { CHARACTER_URL, LOCATION_URL, NAME_PARAMETER, PAGE_PARAMETER, SPECIES_PARAMETER } from './global';
+import { CHARACTER_URL, LOCATION_PARAMETER, LOCATION_URL, NAME_PARAMETER, PAGE_PARAMETER, SPECIES_PARAMETER } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,16 @@ export class ApiService {
   public getCharactersPageFilters(page: number, name?: string, species?: string): Observable<ICharacterResponse> {
     console.log(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}&${SPECIES_PARAMETER}${species}`);
     return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}&${SPECIES_PARAMETER}${species}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
+  public getCharactersPageLocation(page: number, location: ILocation): Observable<ICharacterResponse> {
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${LOCATION_PARAMETER}${location}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

@@ -48,7 +48,7 @@
         class="relative h-[70vh] overflow-hidden max-[1155px]:h-[30vh] max-[455px]:h-[25vh]">
         <!-- Item 1 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[0])"
                 class="text-white font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[0] && locationList[0].name" class="locationName">{{locationList[0].name}}</p>
             </span>
@@ -58,7 +58,7 @@
 
         <!-- Item 2 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[1])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[1] && locationList[1].name" class="locationName">{{locationList[1].name}}</p>
             </span>
@@ -68,7 +68,7 @@
 
         <!-- Item 3 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[2])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[2] && locationList[2].name" class="locationName">{{locationList[2].name}}</p>
             </span>
@@ -78,7 +78,7 @@
 
         <!-- Item 4 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[3])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[3] && locationList[3].name" class="locationName">{{locationList[3].name}}</p>
             </span>
@@ -88,7 +88,7 @@
 
         <!-- Item 5 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[4])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[4] && locationList[4].name" class="locationName">{{locationList[4].name}}</p>
             </span>
@@ -98,7 +98,7 @@
 
         <!-- Item 6 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[5])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[5] && locationList[5].name" class="locationName">{{locationList[5].name}}</p>
             </span>
@@ -108,7 +108,7 @@
 
         <!-- Item 7 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[6])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[6] && locationList[6].name" class="locationName">{{locationList[6].name}}</p>
             </span>
@@ -118,7 +118,7 @@
 
         <!-- Item 8 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[7])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[7] && locationList[7].name" class="locationName">{{locationList[7].name}}</p>
             </span>
@@ -128,7 +128,7 @@
 
         <!-- Item 9 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[8])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[8] && locationList[8].name" class="locationName">{{locationList[8].name}}</p>
             </span>
@@ -138,7 +138,7 @@
 
         <!-- Item 10 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span
+            <span (click)="locationFilter(locationList[9])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
                 <p *ngIf="locationList[9] && locationList[9].name" class="locationName">{{locationList[9].name}}</p>
             </span>

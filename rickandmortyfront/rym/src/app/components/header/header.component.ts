@@ -3,6 +3,7 @@ import { IGenericResponse } from 'src/app/models/genericResponse.model';
 import { ILocation } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
 import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent {
   location?: ILocation;
   // Service
   private apiService = inject(ApiService);
+  private sharedDataService = inject(SharedDataService);
 
   ngOnInit(): void {
     this.obtainLocationsCount();
@@ -67,7 +69,10 @@ export class HeaderComponent {
     fetchLocation();
   }
 
-
+  // Location filter
+  locationFilter(location: ILocation) {
+    this.sharedDataService.updateData(location);
+  }
 
 
 }

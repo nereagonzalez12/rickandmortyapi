@@ -11,7 +11,6 @@ export class HomeComponent {
   scrollToTop() {
     // Obtain the container element
     const container = this.scrollContainer.nativeElement;
-    console.log(container);
     // Restart the scroll bar position
     container.scrollIntoView({ behavior: "smooth" });
   }
