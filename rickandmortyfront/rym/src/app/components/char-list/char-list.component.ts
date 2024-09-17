@@ -2,7 +2,6 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
-import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,6 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class CharListComponent {
   characterList: ICharacter[] = [];
   loadingCards: boolean = true;
+  speciesSelected: string = 'Species';
   // Pagination
   nextCharacterPage: string | null = null;
   previousCharacterPage: string | null = null;
@@ -26,7 +26,7 @@ export class CharListComponent {
   @Output() triggerScroll = new EventEmitter<void>();
 
   // Form constructor
-  constructor(private formBuilder: FormBuilder, private homeComponent: HomeComponent) {
+  constructor(private formBuilder: FormBuilder) {
     this.searchForm = this.formBuilder.group({
       parameter: [''] // Inicialize with an empty parameter
     });
@@ -47,24 +47,40 @@ export class CharListComponent {
     this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
   }
 
+  /* Utils */
   removeStorage() {
     sessionStorage.removeItem('pageNumber');
     sessionStorage.removeItem('nameParameter');
+    sessionStorage.removeItem('speciesParameter');
   }
 
-  obtainCharactersPageData(page: number, name?: string) {
-    console.log(page);
+  // Scroll to top button
+  scrollToTop(): void {
+    this.triggerScroll.emit();
+  }
+
+  /* Fetch data */
+  obtainCharactersPageData(page: number, name?: string, species?: string) {
+    // Handle empty parameters
+    if (species === undefined) {
+      species = '';
+    }
+    if (name === undefined) {
+      name = '';
+    }
     /* Subscribe to the API server to fetch data */
-    if (name) {
+    if (name || species) {
       sessionStorage.removeItem('pageNumber');
-      this.apiService.getCharactersPageFilters(page, name).subscribe({
+      this.apiService.getCharactersPageFilters(page, name, species).subscribe({
         next: (data: ICharacterResponse) => {
+
           this.characterList = data.results;
           this.nextCharacterPage = data.next;
           this.previousCharacterPage = data.previous;
           this.actualPage = data.page_number;
-          // Save actual page in Sesion Storage
+          // Save actual parameters in Sesion Storage
           sessionStorage.setItem('nameParameter', String(name));
+          sessionStorage.setItem('speciesParameter', String(species));
           this.loadingCards = false;
         },
         error: (error: any) => {
@@ -102,13 +118,15 @@ export class CharListComponent {
     });
   }
 
-  // Pagination functions 
+  /* Pagination functions */
   nextPage() {
-    let nameParameter = sessionStorage.getItem('nameParameter');
+    let nameParameter = sessionStorage.getItem('nameParameter') || undefined;
+    let speciesParameter = sessionStorage.getItem('speciesParameter') || undefined;
     let stringPageNumber = sessionStorage.getItem('pageNumber');
-    if (nameParameter) {
+
+    if (nameParameter || speciesParameter) {
       // Don't save page in sesion storage with filters
-      this.obtainCharactersPageData(Number(this.actualPage) + 1, nameParameter);
+      this.obtainCharactersPageData(Number(this.actualPage) + 1, nameParameter, speciesParameter);
     } else {
       if (stringPageNumber != null) {
         this.actualPage = +stringPageNumber;
@@ -118,11 +136,13 @@ export class CharListComponent {
   }
 
   previousPage() {
-    let nameParameter = sessionStorage.getItem('nameParameter');
+    let nameParameter = sessionStorage.getItem('nameParameter') || undefined;
+    let speciesParameter = sessionStorage.getItem('speciesParameter') || undefined;
     let stringPageNumber = sessionStorage.getItem('pageNumber');
-    if (nameParameter) {
+
+    if (nameParameter || speciesParameter) {
       // Don't save page in sesion storage with filters
-      this.obtainCharactersPageData(Number(this.actualPage) - 1, nameParameter);
+      this.obtainCharactersPageData(Number(this.actualPage) - 1, nameParameter, speciesParameter);
     } else {
       if (stringPageNumber != null) {
         this.actualPage = +stringPageNumber;
@@ -131,15 +151,22 @@ export class CharListComponent {
     }
   }
 
+  /* Filters Section */
+
   // Seach input
   searchCharacterInput() {
     this.actualPage = 1;
+    this.speciesSelected = 'Species';
     this.obtainCharactersPageData(this.actualPage, this.searchForm.get('parameter')?.value);
   }
 
-  // Scroll to top button
-  scrollToTop(): void {
-    this.triggerScroll.emit();
+  // Species filter
+  speciesSelection(species: string) {
+    this.actualPage = 1;
+    this.speciesSelected = species;
+    this.obtainCharactersPageData(this.actualPage, '', species);
+
   }
+
 
 }
