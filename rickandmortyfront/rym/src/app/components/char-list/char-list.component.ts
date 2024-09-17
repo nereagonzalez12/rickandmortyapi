@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CharListComponent {
   characterList: ICharacter[] = [];
+  loadingCards: boolean = true;
   // Pagination
   nextCharacterPage: string | null = null;
   previousCharacterPage: string | null = null;
@@ -57,6 +58,7 @@ export class CharListComponent {
           this.actualPage = data.page_number;
           // Save actual page in Sesion Storage
           sessionStorage.setItem('nameParameter', String(name));
+          this.loadingCards = false;
         },
         error: (error: any) => {
           console.log(error);
@@ -72,6 +74,7 @@ export class CharListComponent {
           this.actualPage = data.page_number;
           // Save actual page in Sesion Storage
           sessionStorage.setItem('pageNumber', String(this.actualPage));
+          this.loadingCards = false;
         },
         error: (error: any) => {
           console.log(error);
