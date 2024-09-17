@@ -1,8 +1,7 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
-import { ILocation } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -11,12 +10,12 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   templateUrl: './char-list.component.html',
   styleUrls: ['./char-list.component.css']
 })
-export class CharListComponent {
+export class CharListComponent implements OnInit {
   characterList: ICharacter[] = [];
   loadingCards: boolean = true;
   speciesSelected: string = 'Species';
   // Location filter
-  locationFilter?: ILocation;
+  locationFilter: string = '';
   private sharedDataService = inject(SharedDataService);
   // Pagination
   nextCharacterPage: string | null = null;
@@ -54,8 +53,11 @@ export class CharListComponent {
     // Get new location data
     this.sharedDataService.currentData.subscribe(data => {
       this.locationFilter = data;
-      console.log(this.locationFilter);
+      if (this.locationFilter != '') {
+        this.obtainCharactersPageDataWithLocation(this.actualPage, this.locationFilter);
+      }
     });
+
   }
 
   /* Utils */
@@ -178,7 +180,24 @@ export class CharListComponent {
     this.obtainCharactersPageData(this.actualPage, '', species);
   }
 
-  // Get location
+  // Location filter
+  obtainCharactersPageDataWithLocation(page: number, location: string) {
 
+    /* Subscribe to the API server to fetch data */
+    sessionStorage.removeItem('pageNumber');
+    this.apiService.getCharactersPageLocation(page, location).subscribe({
+      next: (data: ICharacterResponse) => {
+        this.characterList = data.results;
+        this.nextCharacterPage = data.next;
+        this.previousCharacterPage = data.previous;
+        this.actualPage = data.page_number;
+        console.log(data);
+        this.loadingCards = false;
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
 
 }

@@ -71,7 +71,7 @@ export class HeaderComponent {
 
   // Location filter
   locationFilter(location: ILocation) {
-    this.sharedDataService.updateData(location);
+    this.sharedDataService.updateData(location.name);
   }
 
 
