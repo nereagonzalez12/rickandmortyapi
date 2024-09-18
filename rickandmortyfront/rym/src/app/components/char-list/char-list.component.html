@@ -73,7 +73,7 @@
                 </div>
             </div>
         </form>
-        <div class="join flex items-center justify-center md:justify-end md:w-1/3 mb-4 ">
+        <div class="join flex items-center justify-center md:justify-end md:w-1/3 mb-4 z-40">
             <button *ngIf="previousCharacterPage && previousCharacterPage != null" (click)="previousPage()"
                 class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">«</button>
             <button *ngIf="!previousCharacterPage || previousCharacterPage == null"
@@ -145,7 +145,7 @@
                     </p>
                 </div>
                 <div class="px-6 py-3 flex flex-row items-center justify-between bg-dark-color-2">
-                    <span href="#" class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
+                    <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
                         <img *ngIf="character.status == 'Alive'" src="assets/svg/green-portal.svg"
                             class="status-portal h-5">
                         <img *ngIf="character.status == 'Dead'" src="assets/svg/red-portal.svg"
@@ -155,7 +155,7 @@
                         <span class="ml-1 text-base text-light-color">{{character.status}}</span>
                     </span>
 
-                    <span href="#" class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
+                    <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
                         <span class="ml-1 text-base text-dark-color-4">{{character.species}}</span>
                     </span>
                 </div>

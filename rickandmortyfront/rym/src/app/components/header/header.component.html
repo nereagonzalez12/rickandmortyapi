@@ -1,6 +1,5 @@
 <div id="controls-carousel" class="absolute top-0 w-full" data-carousel="slide">
     <!-- Header links -->
-
     <div class="absolute z-40 flex justify-end w-full pt-2 pr-3 md:p-5 ">
         <!-- Github -->
         <a href="https://github.com/nereagonzalez12">
@@ -30,7 +29,7 @@
 
     <!-- Carousel wrapper -->
     <div [class.hidden]="locationList.length >= 1"
-        class="relative h-[70vh] overflow-hidden max-[1155px]:h-[30vh] max-[455px]:h-[25vh]">
+        class="relative h-[70vh] overflow-hidden max-[1155px]:h-[40vh] max-[455px]:h-[35vh]">
         <!-- Loading spinner-->
         <div role="status" class="absolute w-full h-full flex items-center justify-center">
             <svg aria-hidden="true" class="inline w-8 h-8 animate-spin text-light-color fill-light-green-pastel"
@@ -45,105 +44,105 @@
         </div>
     </div>
     <div [class.hidden]="locationList.length < 1"
-        class="relative h-[70vh] overflow-hidden max-[1155px]:h-[30vh] max-[455px]:h-[25vh]">
+        class="relative h-[70vh] overflow-hidden max-[1155px]:h-[40vh] max-[455px]:h-[35vh]">
         <!-- Item 1 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[0])"
                 class="text-white font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[0] && locationList[0].name" class="locationName">{{locationList[0].name}}</p>
+                <p *ngIf="locationList[0] && locationList[0].name" class="location-name">{{locationList[0].name}}</p>
             </span>
             <img *ngIf="locationList[0] && locationList[0].image" src="{{locationList[0].image}}"
-                class="absolute block w-full brightness-50" alt="item 1">
+                class="h-full w-full brightness-50 object-cover" alt="item 1">
         </div>
 
         <!-- Item 2 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[1])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[1] && locationList[1].name" class="locationName">{{locationList[1].name}}</p>
+                <p *ngIf="locationList[1] && locationList[1].name" class="location-name">{{locationList[1].name}}</p>
             </span>
             <img *ngIf="locationList[1] && locationList[1].image" src="{{locationList[1].image}}"
-                class="absolute block w-full  brightness-50" alt="item 2">
+                class="h-full w-full brightness-50 object-cover" alt="item 2">
         </div>
 
         <!-- Item 3 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[2])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[2] && locationList[2].name" class="locationName">{{locationList[2].name}}</p>
+                <p *ngIf="locationList[2] && locationList[2].name" class="location-name">{{locationList[2].name}}</p>
             </span>
             <img *ngIf="locationList[2] && locationList[2].image" src="{{locationList[2].image}}"
-                class="absolute block w-full  brightness-50" alt="item 3">
+                class="h-full w-full brightness-50 object-cover" alt="item 3">
         </div>
 
         <!-- Item 4 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[3])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[3] && locationList[3].name" class="locationName">{{locationList[3].name}}</p>
+                <p *ngIf="locationList[3] && locationList[3].name" class="location-name">{{locationList[3].name}}</p>
             </span>
             <img *ngIf="locationList[3] && locationList[3].image" src="{{locationList[3].image}}"
-                class="absolute block w-full  brightness-50" alt="item 4">
+                class="h-full w-full brightness-50 object-cover" alt="item 4">
         </div>
 
         <!-- Item 5 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[4])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[4] && locationList[4].name" class="locationName">{{locationList[4].name}}</p>
+                <p *ngIf="locationList[4] && locationList[4].name" class="location-name">{{locationList[4].name}}</p>
             </span>
             <img *ngIf="locationList[4] && locationList[4].image" src="{{locationList[4].image}}"
-                class="absolute block w-full  brightness-50" alt="item 5">
+                class="h-full w-full brightness-50 object-cover" alt="item 5">
         </div>
 
         <!-- Item 6 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[5])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[5] && locationList[5].name" class="locationName">{{locationList[5].name}}</p>
+                <p *ngIf="locationList[5] && locationList[5].name" class="location-name">{{locationList[5].name}}</p>
             </span>
             <img *ngIf="locationList[5] && locationList[5].image" src="{{locationList[5].image}}"
-                class="absolute block w-full  brightness-50" alt="item 6">
+                class="h-full w-full brightness-50 object-cover" alt="item 6">
         </div>
 
         <!-- Item 7 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[6])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[6] && locationList[6].name" class="locationName">{{locationList[6].name}}</p>
+                <p *ngIf="locationList[6] && locationList[6].name" class="location-name">{{locationList[6].name}}</p>
             </span>
             <img *ngIf="locationList[6] && locationList[6].image" src="{{locationList[6].image}}"
-                class="absolute block w-full  brightness-50" alt="item 7">
+                class="h-full w-full brightness-50 object-cover" alt="item 7">
         </div>
 
         <!-- Item 8 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[7])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[7] && locationList[7].name" class="locationName">{{locationList[7].name}}</p>
+                <p *ngIf="locationList[7] && locationList[7].name" class="location-name">{{locationList[7].name}}</p>
             </span>
             <img *ngIf="locationList[7] && locationList[7].image" src="{{locationList[7].image}}"
-                class="absolute block w-full  brightness-50" alt="item 8">
+                class="h-full w-full brightness-50 object-cover" alt="item 8">
         </div>
 
         <!-- Item 9 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[8])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[8] && locationList[8].name" class="locationName">{{locationList[8].name}}</p>
+                <p *ngIf="locationList[8] && locationList[8].name" class="location-name">{{locationList[8].name}}</p>
             </span>
             <img *ngIf="locationList[8] && locationList[8].image" src="{{locationList[8].image}}"
-                class="absolute block w-full  brightness-50" alt="item 9">
+                class="h-full w-full brightness-50 object-cover" alt="item 9">
         </div>
 
         <!-- Item 10 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
             <span (click)="locationFilter(locationList[9])"
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[9] && locationList[9].name" class="locationName">{{locationList[9].name}}</p>
+                <p *ngIf="locationList[9] && locationList[9].name" class="location-name">{{locationList[9].name}}</p>
             </span>
             <img *ngIf="locationList[9] && locationList[9].image" src="{{locationList[9].image}}"
-                class="absolute block w-full  brightness-50" alt="item 10">
+                class="h-full w-full brightness-50 object-cover" alt="item 10">
         </div>
     </div>
 

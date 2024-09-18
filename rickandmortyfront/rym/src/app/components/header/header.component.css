@@ -3,7 +3,7 @@
     background-color: var(--background-color);
 }
 
-.locationName {
+.location-name {
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);
     padding: 0.1em;
     border-radius: 0.1em;
@@ -11,7 +11,7 @@
     font-size: 3vw;
 }
 
-.locationName:hover {
+.location-name:hover {
     transform: scale(0.9);
     box-shadow: inset 0 20px 25px -5px rgb(0 0 0 / 0.3);
 

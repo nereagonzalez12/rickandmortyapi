@@ -5,7 +5,7 @@ import { ICharacter } from '../models/character.model';
 import { ICharacterResponse } from '../models/characterResponse.model';
 import { IGenericResponse } from '../models/genericResponse.model';
 import { ILocation } from '../models/location.model';
-import { CHARACTER_URL, CHARACTER_URL_FILTERS, LOCATION_PARAMETER, LOCATION_URL, NAME_PARAMETER, PAGE_PARAMETER, SPECIES_PARAMETER } from './global';
+import { CHARACTER_URL, CHARACTER_URL_FILTERS, LOCATION_PARAMETER, LOCATION_URL, LOCATION_URL_FILTERS, NAME_PARAMETER, PAGE_PARAMETER, SPECIES_PARAMETER } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +49,17 @@ export class ApiService {
   /* GET ONE LOCATION */
   public getLocation(id: number): Observable<ILocation> {
     return this._httpClient.get<ILocation>(`${LOCATION_URL}${id}/`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // handle errors
+        console.log(error);
+        return throwError(() => new Error());
+      })
+    );
+  }
+
+  /* GET LOCATION BY NAME*/
+  public getLocationByName(name: string): Observable<ILocation> {
+    return this._httpClient.get<ILocation>(`${LOCATION_URL_FILTERS}${NAME_PARAMETER}${name}/`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

@@ -1,3 +1,28 @@
-<div class="absolute top-0 w-full h-full bg-background-color">
+<div class="absolute top-0 w-full h-full bg-dark-color-1-5">
 
+    <div class="z-40 absolute w-full h-full flex items-center justify-around">
+        <div class="bg-dark-color-1 h-[70%] w-[40%]" *ngIf="characterFilter">
+            <h1 class="text-white md:text-4xl text-xl font-semibold ">
+                {{characterFilter.name}}</h1>
+        </div>
+
+        <div class="rounded overflow-hidden shadow-md flex flex-col w-[40%] md:w-auto" *ngIf="characterFilter">
+            <img *ngIf="characterFilter && characterFilter.image" src="{{characterFilter.image}}" alt="character-image">
+            <div class="md:px-6 md:py-3 px-2 py-1 flex flex-row items-center justify-between bg-dark-color-1">
+                <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
+                    <img *ngIf="characterFilter.status == 'Alive'" src="assets/svg/green-portal.svg"
+                        class="status-portal h-3 md:h-5">
+                    <img *ngIf="characterFilter.status == 'Dead'" src="assets/svg/red-portal.svg"
+                        class="status-portal h-3 md:h-5">
+                    <img *ngIf="characterFilter.status == 'unknown'" src="assets/svg/gray-portal.svg"
+                        class="status-portal h-3 md:h-5">
+                    <span class="ml-1 text-base text-light-color">{{characterFilter.status}}</span>
+                </span>
+
+                <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
+                    <span class="ml-1 text-base text-dark-color-4">{{characterFilter.species}}</span>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>

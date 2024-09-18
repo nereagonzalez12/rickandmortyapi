@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // Get new character data
     this.sharedDataService.currentCharacterData.subscribe(data => {
-      console.log(data);
       if (data != null) {
         this.characterSelected = true;
       }
