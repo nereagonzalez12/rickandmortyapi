@@ -10,3 +10,10 @@ class CharacterFilter(django_filters.FilterSet):
         model = Character
         fields = ['name', 'species']
         
+class LocationFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='iexact')
+    
+    class Meta:
+        model = Location
+        fields = ['name']
+        

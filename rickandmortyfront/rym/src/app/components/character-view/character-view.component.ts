@@ -10,6 +10,8 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class CharacterViewComponent implements OnInit {
   // Character selected
   characterFilter: ICharacter | null = null;
+  locationImage: string = '';
+
 
   // Service
   private sharedDataService = inject(SharedDataService);

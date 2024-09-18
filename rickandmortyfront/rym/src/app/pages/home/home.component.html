@@ -1,7 +1,9 @@
 <div #scrollContainer>
-    <header class="relative h-[70vh] max-[1155px]:h-[30vh] max-[455px]:h-[25vh] ">
-        <app-header [class.hidden]="characterSelected"></app-header>
-        <app-character-view [class.hidden]="!characterSelected"></app-character-view>
+    <header [class.hidden]="characterSelected" class="relative h-[70vh] max-[1155px]:h-[30vh] max-[455px]:h-[25vh] ">
+        <app-header></app-header>
+    </header>
+    <header [class.hidden]="!characterSelected" class="relative h-[70vh] max-[1155px]:h-[50vh] max-[455px]:h-[50vh] ">
+        <app-character-view></app-character-view>
     </header>
     <div class="char-list bg-dark-color-1 pb-5">
         <app-char-list (triggerScroll)="scrollToTop()"></app-char-list>

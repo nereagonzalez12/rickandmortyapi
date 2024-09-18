@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, pagination, status
 from rym.pagination import CustomPagination
-from rym.filters import CharacterFilter
+from rym.filters import CharacterFilter, LocationFilter
 from rym.models import *
 from rym.serializers import *
 from filter_and_pagination import FilterPagination
@@ -16,6 +16,8 @@ class LocationViewSet(viewsets.ModelViewSet):
     """
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = LocationFilter
     
 class EpisodeViewSet(viewsets.ReadOnlyModelViewSet):
     """
