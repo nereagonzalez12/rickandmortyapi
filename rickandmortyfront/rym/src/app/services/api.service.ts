@@ -59,7 +59,6 @@ export class ApiService {
 
   /* SEARCH FILTERS */
   public getCharactersPageFilters(page: number, name?: string, species?: string): Observable<ICharacterResponse> {
-    console.log(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}&${SPECIES_PARAMETER}${species}`);
     return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}&${SPECIES_PARAMETER}${species}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
@@ -70,7 +69,6 @@ export class ApiService {
   }
 
   public getCharactersPageLocation(page: number, location: string): Observable<ICharacterResponse> {
-    console.log(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${LOCATION_PARAMETER}${location}`);
     return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${LOCATION_PARAMETER}${location}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors

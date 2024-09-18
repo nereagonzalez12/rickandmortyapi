@@ -39,10 +39,9 @@ export class HeaderComponent {
   obtainRandomLocations(count: number) {
     // Obtain 10 random locations for the slider
     const PLACES_COUNT = 10;
-
     const fetchLocation = () => {
       if (this.locationList.length < PLACES_COUNT) {
-        const RANDOM_NUMBER = Math.ceil(Math.random() * (count - 1) + 1);
+        const RANDOM_NUMBER = Math.floor(Math.random() * (count - 1 + 1)) + 1;
         this.apiService.getLocation(RANDOM_NUMBER).subscribe({
           next: (data: ILocation) => {
             if (data.image === null) {
@@ -72,6 +71,9 @@ export class HeaderComponent {
   // Location filter
   locationFilter(location: ILocation) {
     this.sharedDataService.updateData(location.name);
+    const carouselElement = document.getElementById('carousel-example');
+    console.log(carouselElement);
+
   }
 
 

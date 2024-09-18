@@ -1,8 +1,6 @@
-<div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 " id="charListContainer">
+<div class="max-w-screen-xl mx-auto p-5" id="charListContainer">
     <!-- Search inputs -->
-
-
-    <div class="pt-4 flex md:justify-between row justify-center items-center md:flex-wrap mb-8">
+    <div class="pt-4 flex md:justify-between row justify-center items-center md:flex-wrap mb-8 ">
         <form [formGroup]="searchForm" class="flex items-center max-w-md mb-4">
             <div class="flex w-full">
 
@@ -75,7 +73,7 @@
                 </div>
             </div>
         </form>
-        <div class="join flex items-center justify-center md:justify-end max-w-md mb-4">
+        <div class="join flex items-center justify-center md:justify-end md:w-1/3 mb-4 ">
             <button *ngIf="previousCharacterPage && previousCharacterPage != null" (click)="previousPage()"
                 class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">«</button>
             <button *ngIf="!previousCharacterPage || previousCharacterPage == null"

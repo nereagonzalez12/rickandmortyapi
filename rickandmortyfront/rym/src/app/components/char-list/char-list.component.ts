@@ -65,6 +65,7 @@ export class CharListComponent implements OnInit {
     sessionStorage.removeItem('pageNumber');
     sessionStorage.removeItem('nameParameter');
     sessionStorage.removeItem('speciesParameter');
+    sessionStorage.removeItem('locationParameter');
   }
 
   // Scroll to top button
@@ -136,8 +137,12 @@ export class CharListComponent implements OnInit {
     let nameParameter = sessionStorage.getItem('nameParameter') || undefined;
     let speciesParameter = sessionStorage.getItem('speciesParameter') || undefined;
     let stringPageNumber = sessionStorage.getItem('pageNumber');
+    let locationParameter = sessionStorage.getItem('locationParameter');
 
-    if (nameParameter || speciesParameter) {
+    if (locationParameter) {
+      // Don't save page in sesion storage with filters
+      this.obtainCharactersPageDataWithLocation(Number(this.actualPage) + 1, locationParameter);
+    } else if (nameParameter || speciesParameter) {
       // Don't save page in sesion storage with filters
       this.obtainCharactersPageData(Number(this.actualPage) + 1, nameParameter, speciesParameter);
     } else {
@@ -152,8 +157,12 @@ export class CharListComponent implements OnInit {
     let nameParameter = sessionStorage.getItem('nameParameter') || undefined;
     let speciesParameter = sessionStorage.getItem('speciesParameter') || undefined;
     let stringPageNumber = sessionStorage.getItem('pageNumber');
+    let locationParameter = sessionStorage.getItem('locationParameter');
 
-    if (nameParameter || speciesParameter) {
+    if (locationParameter) {
+      // Don't save page in sesion storage with filters
+      this.obtainCharactersPageDataWithLocation(Number(this.actualPage) - 1, locationParameter);
+    } else if (nameParameter || speciesParameter) {
       // Don't save page in sesion storage with filters
       this.obtainCharactersPageData(Number(this.actualPage) - 1, nameParameter, speciesParameter);
     } else {
@@ -182,7 +191,6 @@ export class CharListComponent implements OnInit {
 
   // Location filter
   obtainCharactersPageDataWithLocation(page: number, location: string) {
-
     /* Subscribe to the API server to fetch data */
     sessionStorage.removeItem('pageNumber');
     this.apiService.getCharactersPageLocation(page, location).subscribe({
@@ -191,7 +199,7 @@ export class CharListComponent implements OnInit {
         this.nextCharacterPage = data.next;
         this.previousCharacterPage = data.previous;
         this.actualPage = data.page_number;
-        console.log(data);
+        sessionStorage.setItem('locationParameter', String(location));
         this.loadingCards = false;
       },
       error: (error: any) => {
