@@ -70,10 +70,7 @@ export class HeaderComponent {
 
   // Location filter
   locationFilter(location: ILocation) {
-    this.sharedDataService.updateData(location.name);
-    const carouselElement = document.getElementById('carousel-example');
-    console.log(carouselElement);
-
+    this.sharedDataService.updateLocationData(location.name);
   }
 
 

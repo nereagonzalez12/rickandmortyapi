@@ -5,7 +5,7 @@ import { ICharacter } from '../models/character.model';
 import { ICharacterResponse } from '../models/characterResponse.model';
 import { IGenericResponse } from '../models/genericResponse.model';
 import { ILocation } from '../models/location.model';
-import { CHARACTER_URL, LOCATION_PARAMETER, LOCATION_URL, NAME_PARAMETER, PAGE_PARAMETER, SPECIES_PARAMETER } from './global';
+import { CHARACTER_URL, CHARACTER_URL_FILTERS, LOCATION_PARAMETER, LOCATION_URL, NAME_PARAMETER, PAGE_PARAMETER, SPECIES_PARAMETER } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ApiService {
 
   /* GET ALL CHARACTERS WITH PAGE */
   public getCharactersPage(page: number): Observable<ICharacterResponse> {
-    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}`).pipe(
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL_FILTERS}${PAGE_PARAMETER}${page}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);
@@ -59,7 +59,7 @@ export class ApiService {
 
   /* SEARCH FILTERS */
   public getCharactersPageFilters(page: number, name?: string, species?: string): Observable<ICharacterResponse> {
-    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}&${SPECIES_PARAMETER}${species}`).pipe(
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL_FILTERS}${PAGE_PARAMETER}${page}&${NAME_PARAMETER}${name}&${SPECIES_PARAMETER}${species}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);
@@ -69,7 +69,7 @@ export class ApiService {
   }
 
   public getCharactersPageLocation(page: number, location: string): Observable<ICharacterResponse> {
-    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL}${PAGE_PARAMETER}${page}&${LOCATION_PARAMETER}${location}`).pipe(
+    return this._httpClient.get<ICharacterResponse>(`${CHARACTER_URL_FILTERS}${PAGE_PARAMETER}${page}&${LOCATION_PARAMETER}${location}`).pipe(
       catchError((error: HttpErrorResponse) => {
         // handle errors
         console.log(error);

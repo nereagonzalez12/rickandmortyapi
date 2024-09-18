@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ICharacter } from '../models/character.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedDataService {
+  private locationData = new BehaviorSubject<string>('');
+  private characterData = new BehaviorSubject<ICharacter | null>(null);
 
-  private dataSource = new BehaviorSubject<string>('');
-
-  currentData = this.dataSource.asObservable();
+  currentLocationData = this.locationData.asObservable();
+  currentCharacterData = this.characterData.asObservable();
 
   constructor() { }
   // Update the data info
-  updateData(data: string) {
-    this.dataSource.next(data);
+  updateLocationData(data: string) {
+    this.locationData.next(data);
+  }
+
+  updateCharacterData(data: ICharacter) {
+    this.characterData.next(data);
   }
 }

@@ -112,17 +112,16 @@
         <div *ngFor="let character of characterList ">
             <!-- CARD -->
             <div class="rounded overflow-hidden shadow-md flex flex-col">
-                <a href="#"></a>
-                <div class="relative"><a href="#">
+                <div class="relative"><a (click)="obtainCharacterData(character.id)">
                         <img class="w-full" src="{{character.image}}" alt="{{character.name}}">
                         <div
-                            class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-background-color opacity-25">
+                            class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-background-color opacity-25 cursor-pointer">
                         </div>
                     </a>
                 </div>
                 <div class="px-6 py-4 mb-auto bg-dark-color-1-5 text-white">
-                    <a href="#"
-                        class="font-medium text-lg hover:text-light-green-bright transition duration-500 ease-in-out inline-block mb-2">{{character.name}}</a>
+                    <a (click)="obtainCharacterData(character.id)"
+                        class="font-medium text-lg hover:text-light-green-bright transition duration-500 ease-in-out inline-block mb-2 cursor-pointer">{{character.name}}</a>
 
                     <!-- Character info -->
                     <p class="text-dark-color-4 text-sm">

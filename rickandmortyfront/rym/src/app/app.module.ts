@@ -9,6 +9,7 @@ import { CharListComponent } from './components/char-list/char-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CharacterViewComponent } from './components/character-view/character-view.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HomeComponent } from './pages/home/home.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    CharacterViewComponent,
   ],
   imports: [
     BrowserModule,

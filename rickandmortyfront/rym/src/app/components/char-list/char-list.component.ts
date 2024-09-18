@@ -16,7 +16,6 @@ export class CharListComponent implements OnInit {
   speciesSelected: string = 'Species';
   // Location filter
   locationFilter: string = '';
-  private sharedDataService = inject(SharedDataService);
   // Pagination
   nextCharacterPage: string | null = null;
   previousCharacterPage: string | null = null;
@@ -26,6 +25,7 @@ export class CharListComponent implements OnInit {
   searchQuery: string = '';
   // Service
   private apiService = inject(ApiService);
+  private sharedDataService = inject(SharedDataService);
   // Scroll to up
   @Output() triggerScroll = new EventEmitter<void>();
 
@@ -44,6 +44,7 @@ export class CharListComponent implements OnInit {
 
     // Clear session storage
     if (sessionStorage.getItem('nameParameter')) {
+      sessionStorage.removeItem('pageNumber');
       this.removeStorage();
     }
 
@@ -51,7 +52,8 @@ export class CharListComponent implements OnInit {
     this.obtainCharactersPageData(Number(sessionStorage.getItem('pageNumber')) | this.actualPage);
 
     // Get new location data
-    this.sharedDataService.currentData.subscribe(data => {
+    this.sharedDataService.currentLocationData.subscribe(data => {
+      this.removeStorage();
       this.locationFilter = data;
       if (this.locationFilter != '') {
         this.obtainCharactersPageDataWithLocation(this.actualPage, this.locationFilter);
@@ -62,7 +64,6 @@ export class CharListComponent implements OnInit {
 
   /* Utils */
   removeStorage() {
-    sessionStorage.removeItem('pageNumber');
     sessionStorage.removeItem('nameParameter');
     sessionStorage.removeItem('speciesParameter');
     sessionStorage.removeItem('locationParameter');
@@ -124,13 +125,15 @@ export class CharListComponent implements OnInit {
     /* Subscribe to the API server with id to fetch character data */
     this.apiService.getCharacter(id).subscribe({
       next: (data: ICharacter) => {
-        console.log(data);
+        this.sharedDataService.updateCharacterData(data);
       },
       error: (error: any) => {
         console.log(error);
       }
     });
   }
+
+
 
   /* Pagination functions */
   nextPage() {
