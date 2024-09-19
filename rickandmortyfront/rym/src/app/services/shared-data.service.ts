@@ -18,7 +18,7 @@ export class SharedDataService {
     this.locationData.next(data);
   }
 
-  updateCharacterData(data: ICharacter) {
+  updateCharacterData(data: ICharacter | null) {
     this.characterData.next(data);
   }
 }

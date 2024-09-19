@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
     this.sharedDataService.currentCharacterData.subscribe(data => {
       if (data != null) {
         this.characterSelected = true;
+      } else {
+        this.characterSelected = false;
+
       }
     });
 

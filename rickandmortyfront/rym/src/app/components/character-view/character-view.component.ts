@@ -25,9 +25,10 @@ export class CharacterViewComponent implements OnInit {
         this.characterFilter.location.image = DEFAULT_LOCATION_IMG;
       }
     });
+  }
 
-
-
+  closeCharacterView() {
+    this.sharedDataService.updateCharacterData(null);
   }
 
 }
