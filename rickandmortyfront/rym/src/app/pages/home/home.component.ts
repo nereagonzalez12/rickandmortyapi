@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
         this.characterSelected = true;
       } else {
         this.characterSelected = false;
-
       }
     });
 

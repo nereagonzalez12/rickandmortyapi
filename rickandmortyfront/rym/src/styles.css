@@ -9,6 +9,16 @@ body {
     background-color: var(--background-color);
 }
 
+::selection {
+    background: var(--light-green-moss);
+    color: var(--dark-color-1);
+}
+
+::-moz-selection {
+    background: var(--light-green-moss);
+    color: var(--dark-color-1);
+}
+
 .basics {
 
     /* basic colors */

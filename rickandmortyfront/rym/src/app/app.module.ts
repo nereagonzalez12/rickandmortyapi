@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CharacterViewComponent } from './components/character-view/character-view.component';
+import { PlumbusComponent } from './pages/plumbus/plumbus.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CharacterViewComponent } from './components/character-view/character-vi
     FooterComponent,
     HomeComponent,
     CharacterViewComponent,
+    PlumbusComponent,
   ],
   imports: [
     BrowserModule,

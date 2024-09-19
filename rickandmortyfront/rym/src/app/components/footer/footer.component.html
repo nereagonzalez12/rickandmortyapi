@@ -10,8 +10,11 @@
                 ❤
             </span>
         </span>
-        <span class="p-4">
-            <img src="assets/svg/plumbus-contour.svg" class="flex h-20" alt="plumbus">
+        <span class="p-4" (mouseenter)="changePlumbus()" (mouseleave)="restartplumbus()">
+            <img src="assets/svg/plumbus-contour.svg" id="plumbus-contour" class="relative h-20 cursor-pointer"
+                alt="plumbus">
+            <img [class.hidden]="!showHidePlumbus" (click)="plumbusPage()" src="assets/svg/plumbus.svg" id="plumbus"
+                class="absolute h-20 " alt="plumbus">
         </span>
         <div class="flex flex-wrap items-center text-sm font-medium p-4 text-light-color">
             <ul class="flex justify-center space-x-5">
