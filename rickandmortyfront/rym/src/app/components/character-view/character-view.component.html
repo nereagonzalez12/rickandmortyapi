@@ -1,4 +1,9 @@
 <div class="absolute top-0 w-full h-full bg-dark-color-1-5">
+    <!-- Background path-->
+    <img class="absolute w-[30%] lg:w-[22%] bottom-0 right-0" src="assets/svg/human-path.svg" alt="bg-path">
+
+
+
     <!-- Close button -->
     <button
         class="hidden lg:flex absolute btn btn-square z-50 pointer-events-auto rounded bg-dark-color-1 m-5 border-none shadow-inner text-light-color hover:bg-background-color hover:text-white  "
@@ -46,7 +51,7 @@
             </p>
             <div
                 class="overflow-y-auto max-h-[20%] md:max-h-[40%] lg:max-h-[50%] relative w-full bg-dark-color-1 shadow-inner rounded flex flex-col divide-y divide-dark-color-1-5">
-                <div class="flex gap-2 p-1" *ngFor="let episode of characterFilter.episode">
+                <div class="flex gap-2 p-1 items-center" *ngFor="let episode of characterFilter.episode">
 
                     <span class="text-dark-color-3 text-2xs md:text-base font-medium ">{{episode.episode}}
                     </span>
