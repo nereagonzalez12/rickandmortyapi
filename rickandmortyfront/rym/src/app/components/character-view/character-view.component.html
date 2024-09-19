@@ -1,11 +1,56 @@
 <div class="absolute top-0 w-full h-full bg-dark-color-1-5">
 
     <div class="z-40 absolute w-full h-full flex items-center justify-around">
-        <div class="bg-dark-color-1 h-[70%] w-[40%]" *ngIf="characterFilter">
+        <!-- Character info -->
+        <div class="h-[80%] w-[40%]" *ngIf="characterFilter">
             <h1 class="text-white md:text-4xl text-xl font-semibold ">
                 {{characterFilter.name}}</h1>
+            <p class="text-xs mb-3 text-light-green-pastel">
+                {{characterFilter.species}}
+                <span *ngIf="characterFilter.type" class="text-dark-color-4"><span *ngIf="characterFilter.type"
+                        class="text-dark-color-3">-</span>
+                    {{characterFilter.type}}</span>
+            </p>
+            <p class="text-dark-color-4 text-xs">
+                Origin:
+            </p>
+            <p *ngIf="characterFilter.origin" class="text-light-color text-xs">
+                {{characterFilter.origin.name}}
+            </p>
+            <p *ngIf="!characterFilter.origin" class="text-light-color text-xs">
+                unknown
+            </p>
+
+            <p class="text-dark-color-4 text-xs mt-3">
+                Last known location:
+            </p>
+            <p *ngIf="characterFilter.location" class="text-light-color text-xs">
+                {{characterFilter.location.name}}
+            </p>
+            <p *ngIf="!characterFilter.location" class="text-light-color text-xs">
+                unknown
+            </p>
+
+            <!-- List of episodes -->
+            <p class="text-dark-color-4 text-xs mt-3 mb-1">
+                Episodes:
+            </p>
+            <div
+                class="overflow-y-auto max-h-[20%] relative w-full bg-dark-color-1 shadow-inner rounded flex flex-col divide-y divide-dark-color-1-5">
+                <div class="flex gap-2 p-1" *ngFor="let episode of characterFilter.episode">
+
+                    <span class="text-dark-color-3 text-2xs font-medium ">{{episode.episode}}
+                    </span>
+                    <span class="text-light-color text-2xs font-medium ">{{episode.name}}</span>
+                    <span class="text-dark-color-2 text-2xs font-medium hidden">{{episode.air_date}}</span>
+
+                </div>
+
+            </div>
+
         </div>
 
+        <!-- Card -->
         <div class="rounded overflow-hidden shadow-md flex flex-col w-[40%] md:w-auto" *ngIf="characterFilter">
             <img *ngIf="characterFilter && characterFilter.image" src="{{characterFilter.image}}" alt="character-image">
             <div class="md:px-6 md:py-3 px-2 py-1 flex flex-row items-center justify-between bg-dark-color-1">
@@ -16,11 +61,7 @@
                         class="status-portal h-3 md:h-5">
                     <img *ngIf="characterFilter.status == 'unknown'" src="assets/svg/gray-portal.svg"
                         class="status-portal h-3 md:h-5">
-                    <span class="ml-1 text-base text-light-color">{{characterFilter.status}}</span>
-                </span>
-
-                <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
-                    <span class="ml-1 text-base text-dark-color-4">{{characterFilter.species}}</span>
+                    <span class="ml-1 text-sm text-light-color">{{characterFilter.status}}</span>
                 </span>
             </div>
         </div>

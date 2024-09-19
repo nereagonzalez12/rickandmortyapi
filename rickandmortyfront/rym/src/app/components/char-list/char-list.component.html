@@ -5,15 +5,15 @@
             <div class="flex w-full">
 
                 <button id="dropdown-button" data-dropdown-toggle="dropdown"
-                    class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center border-1 bg-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color border rounded-s-lg focus:ring-4 focus:outline-none focus:ring-light-green-moss"
-                    type="button">{{speciesSelected}}<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                    class="flex-shrink-0 z-10 inline-flex items-center p-2 md:py-2.5 md:px-4 text-xs md:text-sm font-medium text-center border-1 bg-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color border rounded-s-lg focus:ring-4 focus:outline-none focus:ring-light-green-moss"
+                    type="button">{{speciesSelected}}<svg class="w-2.5 h-2.5 ms-1.5 md:ms-2.5" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg></button>
                 <div id="dropdown"
                     class="z-50 hidden bg-dark-color-1-5 divide-y divide-dark-color-1 rounded-lg shadow w-52">
-                    <ul class="py-2 text-sm text-light-color" aria-labelledby="dropdown-button">
+                    <ul class="py-2 text-xs md:text-sm text-light-color" aria-labelledby="dropdown-button">
                         <li>
                             <button type="button" (click)="speciesSelection('Human')"
                                 class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Human</button>
@@ -59,10 +59,10 @@
                 </div>
                 <div class="relative w-full">
                     <input type="text" id="search-dropdown" type="text" formControlName="parameter" name="searchQuery"
-                        class="rounded-e-lg bg-background-color text-light-color text-sm focus:ring-light-green-moss focus:border-light-green-pastel block w-full p-2.5  "
+                        class="rounded-e-lg bg-background-color text-light-color text-xs md:text-sm focus:ring-light-green-moss focus:border-light-green-pastel block w-full p-2.5  "
                         placeholder="Who has my plumbus?" required autocomplete="off" />
                     <button type="submit" (click)="searchCharacterInput()"
-                        class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white rounded-e-lg search-button ms-2 bg-light-green-moss focus:ring-4 focus:outline-none focus:ring-light-green-pastel ">
+                        class="absolute top-0 end-0 h-full p-2.5 text-xs md:text-sm font-medium text-white rounded-e-lg search-button ms-2 bg-light-green-moss focus:ring-4 focus:outline-none focus:ring-light-green-pastel ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 64 64" fill="white">
                             <path
                                 d="M 24 2.8886719 C 12.365714 2.8886719 2.8886719 12.365723 2.8886719 24 C 2.8886719 35.634277 12.365714 45.111328 24 45.111328 C 29.036552 45.111328 33.664698 43.331333 37.298828 40.373047 L 52.130859 58.953125 C 52.130859 58.953125 55.379484 59.435984 57.396484 57.333984 C 59.427484 55.215984 58.951172 52.134766 58.951172 52.134766 L 40.373047 37.298828 C 43.331332 33.664697 45.111328 29.036548 45.111328 24 C 45.111328 12.365723 35.634286 2.8886719 24 2.8886719 z M 24 7.1113281 C 33.352549 7.1113281 40.888672 14.647457 40.888672 24 C 40.888672 33.352543 33.352549 40.888672 24 40.888672 C 14.647451 40.888672 7.1113281 33.352543 7.1113281 24 C 7.1113281 14.647457 14.647451 7.1113281 24 7.1113281 z">
@@ -73,19 +73,19 @@
                 </div>
             </div>
         </form>
-        <div class="join flex items-center justify-center md:justify-end md:w-1/3 mb-4 z-40">
+        <div class="join flex items-center justify-center md:justify-end md:w-1/3 mb-4 z-40 ">
             <button *ngIf="previousCharacterPage && previousCharacterPage != null" (click)="previousPage()"
-                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">«</button>
+                class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">«</button>
             <button *ngIf="!previousCharacterPage || previousCharacterPage == null"
-                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
+                class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
                 disabled>«</button>
             <button
-                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">Page
+                class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">Page
                 {{actualPage}}</button>
             <button *ngIf="nextCharacterPage && nextCharacterPage != null" (click)="nextPage()"
                 class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">»</button>
             <button *ngIf="!nextCharacterPage || nextCharacterPage == null"
-                class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
+                class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
                 disabled>»</button>
         </div>
     </div>

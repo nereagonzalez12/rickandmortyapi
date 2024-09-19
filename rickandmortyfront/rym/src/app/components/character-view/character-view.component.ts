@@ -17,6 +17,7 @@ export class CharacterViewComponent implements OnInit {
   private sharedDataService = inject(SharedDataService);
 
   ngOnInit() {
+
     // Get new character data
     this.sharedDataService.currentCharacterData.subscribe(data => {
       this.characterFilter = data;
@@ -25,9 +26,8 @@ export class CharacterViewComponent implements OnInit {
       }
     });
 
-    if (this.characterFilter != null) {
 
-    }
+
   }
 
 }
