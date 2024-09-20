@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class PlumbusComponent {
 
+  navHidden: boolean = true;
+
+
+  showNav() {
+    this.navHidden = !this.navHidden;
+  }
+
 }
