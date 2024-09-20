@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IGenericResponse } from 'src/app/models/genericResponse.model';
 import { ILocation } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -12,6 +13,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 })
 
 export class HeaderComponent {
+  currentLang: string = '';
   // Location carousel
   locationList: ILocation[] = [];
   location?: ILocation;
@@ -19,7 +21,12 @@ export class HeaderComponent {
   private apiService = inject(ApiService);
   private sharedDataService = inject(SharedDataService);
 
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('en'); // default idiom
+  }
+
   ngOnInit(): void {
+    this.currentLang = this.translate.currentLang;
     this.obtainLocationsCount();
   }
 
@@ -73,6 +80,11 @@ export class HeaderComponent {
     this.sharedDataService.updateLocationData(location.name);
   }
 
+  // Idiom selector
+  switchLang(lang: string) {
+    this.translate.use(lang);
+    this.currentLang = lang;
+  }
 
 }
 
