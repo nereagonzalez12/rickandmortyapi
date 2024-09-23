@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ICharacter } from 'src/app/models/character.model';
+import { IEpisode } from 'src/app/models/episode.model';
 import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -26,7 +27,11 @@ export class CharacterViewComponent implements OnInit {
         const character = {
           ...data,
           translatedStatus: this.translate.instant(`${data.status}`),
-          translatedSpecies: this.translate.instant(`${data.species}`)
+          translatedSpecies: this.translate.instant(`${data.species}`),
+          episode: data.episode.map((ep: IEpisode) => ({
+            ...ep,
+            translatedName: this.translate.instant(`${ep.episode}`)
+          }))
         };
         this.characterFilter = character;
       }

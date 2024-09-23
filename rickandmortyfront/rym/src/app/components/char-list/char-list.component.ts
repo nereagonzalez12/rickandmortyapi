@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
+import { IEpisode } from 'src/app/models/episode.model';
 import { ApiService } from 'src/app/services/api.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -45,6 +46,7 @@ export class CharListComponent implements OnInit {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       if (event) {
         this.speciesSelectedName = event.translations.Species;
+        this.updateCharacterTranslations();
       }
     });
 
@@ -105,8 +107,13 @@ export class CharListComponent implements OnInit {
           this.characterList = data.results.map(character => ({
             ...character,
             translatedStatus: this.translate.instant(`${character.status}`),
-            translatedSpecies: this.translate.instant(`${character.species}`)
+            translatedSpecies: this.translate.instant(`${character.species}`),
+            episode: character.episode.map((ep: IEpisode) => ({
+              ...ep,
+              translatedName: this.translate.instant(`${ep.episode}`)
+            }))
           }));
+          this.updateCharacterTranslations();
           this.nextCharacterPage = data.next;
           this.previousCharacterPage = data.previous;
           this.actualPage = data.page_number;
@@ -126,8 +133,13 @@ export class CharListComponent implements OnInit {
           this.characterList = data.results.map(character => ({
             ...character,
             translatedStatus: this.translate.instant(`${character.status}`),
-            translatedSpecies: this.translate.instant(`${character.species}`)
+            translatedSpecies: this.translate.instant(`${character.species}`),
+            episode: character.episode.map((ep: IEpisode) => ({
+              ...ep,
+              translatedName: this.translate.instant(`${ep.episode}`)
+            }))
           }));
+          this.updateCharacterTranslations();
           this.nextCharacterPage = data.next;
           this.previousCharacterPage = data.previous;
           this.actualPage = data.page_number;
@@ -222,8 +234,13 @@ export class CharListComponent implements OnInit {
         this.characterList = data.results.map(character => ({
           ...character,
           translatedStatus: this.translate.instant(`${character.status}`),
-          translatedSpecies: this.translate.instant(`${character.species}`)
+          translatedSpecies: this.translate.instant(`${character.species}`),
+          episode: character.episode.map((ep: IEpisode) => ({
+            ...ep,
+            translatedName: this.translate.instant(`${ep.episode}`)
+          }))
         }));
+        this.updateCharacterTranslations();
         this.nextCharacterPage = data.next;
         this.previousCharacterPage = data.previous;
         this.actualPage = data.page_number;
@@ -237,5 +254,15 @@ export class CharListComponent implements OnInit {
   }
 
   /* Translations */
-
+  updateCharacterTranslations() {
+    this.characterList = this.characterList.map(character => ({
+      ...character,
+      translatedStatus: this.translate.instant(character.status),
+      translatedSpecies: this.translate.instant(character.species),
+      episode: character.episode.map((ep: IEpisode) => ({
+        ...ep,
+        translatedName: this.translate.instant(`${ep.episode}`)
+      }))
+    }));
+  }
 }
