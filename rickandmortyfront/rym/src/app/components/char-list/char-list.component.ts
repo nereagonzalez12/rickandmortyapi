@@ -17,6 +17,7 @@ export class CharListComponent implements OnInit {
   loadingCards: boolean = true;
   speciesSelected: string = 'Species';
   speciesSelectedName: string = 'Species';
+
   // Location filter
   locationFilter: string = '';
   // Pagination
@@ -101,7 +102,11 @@ export class CharListComponent implements OnInit {
       this.apiService.getCharactersPageFilters(page, name, species).subscribe({
         next: (data: ICharacterResponse) => {
 
-          this.characterList = data.results;
+          this.characterList = data.results.map(character => ({
+            ...character,
+            translatedStatus: this.translate.instant(`${character.status}`),
+            translatedSpecies: this.translate.instant(`${character.species}`)
+          }));
           this.nextCharacterPage = data.next;
           this.previousCharacterPage = data.previous;
           this.actualPage = data.page_number;
@@ -118,7 +123,11 @@ export class CharListComponent implements OnInit {
 
       this.apiService.getCharactersPage(page).subscribe({
         next: (data: ICharacterResponse) => {
-          this.characterList = data.results;
+          this.characterList = data.results.map(character => ({
+            ...character,
+            translatedStatus: this.translate.instant(`${character.status}`),
+            translatedSpecies: this.translate.instant(`${character.species}`)
+          }));
           this.nextCharacterPage = data.next;
           this.previousCharacterPage = data.previous;
           this.actualPage = data.page_number;
@@ -210,7 +219,11 @@ export class CharListComponent implements OnInit {
     sessionStorage.removeItem('pageNumber');
     this.apiService.getCharactersPageLocation(page, location).subscribe({
       next: (data: ICharacterResponse) => {
-        this.characterList = data.results;
+        this.characterList = data.results.map(character => ({
+          ...character,
+          translatedStatus: this.translate.instant(`${character.status}`),
+          translatedSpecies: this.translate.instant(`${character.species}`)
+        }));
         this.nextCharacterPage = data.next;
         this.previousCharacterPage = data.previous;
         this.actualPage = data.page_number;

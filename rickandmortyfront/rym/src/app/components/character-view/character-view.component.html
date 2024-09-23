@@ -17,7 +17,8 @@
             <h1 class="text-white md:text-5xl text-xl font-semibold ">
                 {{characterFilter.name}}</h1>
             <p class="text-xs md:text-base mb-3 text-light-green-pastel">
-                {{characterFilter.species}}
+                {{ characterFilter.translatedSpecies
+                }}
                 <span *ngIf="characterFilter.type" class="text-dark-color-4"><span *ngIf="characterFilter.type"
                         class="text-dark-color-3">-</span>
                     {{characterFilter.type}}</span>
@@ -74,7 +75,8 @@
 
                     <img *ngIf="characterFilter.status == 'unknown'" src="assets/svg/gray-portal.svg"
                         class="status-portal h-3 md:h-5">
-                    <span class="ml-1 text-sm md:text-base  text-light-color">{{characterFilter.status}}</span>
+                    <span class="ml-1 text-sm md:text-base  text-light-color">{{ characterFilter.translatedStatus
+                        }}</span>
                 </span>
             </div>
         </div>

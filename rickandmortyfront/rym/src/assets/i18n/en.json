@@ -31,5 +31,9 @@
     "50% more efficient": "50% more efficient",
     "than ever before.": "than ever before.",
     "Buy": "Buy",
-    "Video by": "Video by"
+    "Video by": "Video by",
+    "status": {
+        "Alive": "Alive",
+        "Dead": "Dead"
+    }
 }

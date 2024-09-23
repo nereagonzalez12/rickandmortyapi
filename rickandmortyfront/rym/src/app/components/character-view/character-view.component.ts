@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ICharacter } from 'src/app/models/character.model';
 import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
 import { SharedDataService } from 'src/app/services/shared-data.service';
@@ -16,11 +17,19 @@ export class CharacterViewComponent implements OnInit {
   // Service
   private sharedDataService = inject(SharedDataService);
 
+  constructor(private translate: TranslateService) { };
   ngOnInit() {
 
     // Get new character data
     this.sharedDataService.currentCharacterData.subscribe(data => {
-      this.characterFilter = data;
+      if (data) {
+        const character = {
+          ...data,
+          translatedStatus: this.translate.instant(`${data.status}`),
+          translatedSpecies: this.translate.instant(`${data.species}`)
+        };
+        this.characterFilter = character;
+      }
       if (this.characterFilter?.location.image === null) {
         this.characterFilter.location.image = DEFAULT_LOCATION_IMG;
       }

@@ -31,5 +31,9 @@
     "50% more efficient": "50% más eficiente",
     "than ever before.": "de lo que nunca ha sido.",
     "Buy": "Comprar",
-    "Video by": "Vídeo hecho por"
+    "Video by": "Vídeo hecho por",
+    "status": {
+        "Alive": "Vivo",
+        "Dead": "Muerto"
+    }
 }

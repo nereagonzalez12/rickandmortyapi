@@ -5,7 +5,9 @@ export interface ICharacter {
     id: number;
     name: string;
     species: string;
+    translatedSpecies: string;
     status: string;
+    translatedStatus: string;
     origin: ILocation;
     location: ILocation;
     episode: IEpisode[];

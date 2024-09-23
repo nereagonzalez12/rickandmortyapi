@@ -163,11 +163,11 @@
                             class="status-portal h-5">
                         <img *ngIf="character.status == 'unknown'" src="assets/svg/gray-portal.svg"
                             class="status-portal h-5">
-                        <span class="ml-1 text-base text-light-color">{{character.status}}</span>
+                        <span class="ml-1 text-base text-light-color"> {{ character.translatedStatus }}</span>
                     </span>
 
                     <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
-                        <span class="ml-1 text-base text-dark-color-4">{{character.species}}</span>
+                        <span class="ml-1 text-base text-dark-color-4">{{ character.translatedSpecies }}</span>
                     </span>
                 </div>
             </div>
