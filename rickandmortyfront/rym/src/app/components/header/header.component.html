@@ -10,30 +10,13 @@
             </svg>
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                class="flex items-center justify-between w-full py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">{{currentLang}}
-                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 1 4 4 4-4" />
-                </svg></button>
             <!-- Dropdown menu -->
-            <div id="dropdownNavbar"
-                class="z-40 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
-                    <li>
-                        <div (click)="switchLang('es')"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">ES
-                        </div>
-                    </li>
-                    <li>
-                        <div (click)="switchLang('en')"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">EN
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
+            <label class="z-40 font-normal bg-white rounded-lg shadow ">
+                <select #langSelect (change)="translate.use(langSelect.value)">
+                    <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                        [selected]="lang === translate.currentLang">{{ lang }}</option>
+                </select>
+            </label>
         </div>
     </div>
     <!-- Header links -->
@@ -84,9 +67,10 @@
         class="relative h-[70vh] overflow-hidden max-[1155px]:h-[40vh] max-[455px]:h-[35vh]">
         <!-- Item 1 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[0])"
+            <span
                 class="text-white font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[0] && locationList[0].name" class="location-name">{{locationList[0].name}}</p>
+                <p *ngIf="locationList[0] && locationList[0].name" (click)="locationFilter(locationList[0])"
+                    class="location-name">{{locationList[0].name}}</p>
             </span>
             <img *ngIf="locationList[0] && locationList[0].image" src="{{locationList[0].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 1">
@@ -94,9 +78,10 @@
 
         <!-- Item 2 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[1])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[1] && locationList[1].name" class="location-name">{{locationList[1].name}}</p>
+                <p *ngIf="locationList[1] && locationList[1].name" (click)="locationFilter(locationList[1])"
+                    class="location-name">{{locationList[1].name}}</p>
             </span>
             <img *ngIf="locationList[1] && locationList[1].image" src="{{locationList[1].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 2">
@@ -104,9 +89,10 @@
 
         <!-- Item 3 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[2])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[2] && locationList[2].name" class="location-name">{{locationList[2].name}}</p>
+                <p *ngIf="locationList[2] && locationList[2].name" (click)="locationFilter(locationList[2])"
+                    class="location-name">{{locationList[2].name}}</p>
             </span>
             <img *ngIf="locationList[2] && locationList[2].image" src="{{locationList[2].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 3">
@@ -114,9 +100,10 @@
 
         <!-- Item 4 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[3])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[3] && locationList[3].name" class="location-name">{{locationList[3].name}}</p>
+                <p *ngIf="locationList[3] && locationList[3].name" (click)="locationFilter(locationList[3])"
+                    class="location-name">{{locationList[3].name}}</p>
             </span>
 
             <img *ngIf="locationList[3] && locationList[3].image" src="{{locationList[3].image}}"
@@ -125,9 +112,10 @@
 
         <!-- Item 5 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[4])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[4] && locationList[4].name" class="location-name">{{locationList[4].name}}</p>
+                <p *ngIf="locationList[4] && locationList[4].name" (click)="locationFilter(locationList[4])"
+                    class="location-name">{{locationList[4].name}}</p>
             </span>
             <img *ngIf="locationList[4] && locationList[4].image" src="{{locationList[4].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 5">
@@ -135,9 +123,10 @@
 
         <!-- Item 6 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[5])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[5] && locationList[5].name" class="location-name">{{locationList[5].name}}</p>
+                <p *ngIf="locationList[5] && locationList[5].name" (click)="locationFilter(locationList[5])"
+                    class="location-name">{{locationList[5].name}}</p>
             </span>
             <img *ngIf="locationList[5] && locationList[5].image" src="{{locationList[5].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 6">
@@ -145,9 +134,10 @@
 
         <!-- Item 7 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[6])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[6] && locationList[6].name" class="location-name">{{locationList[6].name}}</p>
+                <p *ngIf="locationList[6] && locationList[6].name" (click)="locationFilter(locationList[6])"
+                    class="location-name">{{locationList[6].name}}</p>
             </span>
             <img *ngIf="locationList[6] && locationList[6].image" src="{{locationList[6].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 7">
@@ -155,9 +145,10 @@
 
         <!-- Item 8 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[7])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[7] && locationList[7].name" class="location-name">{{locationList[7].name}}</p>
+                <p *ngIf="locationList[7] && locationList[7].name" (click)="locationFilter(locationList[7])"
+                    class="location-name">{{locationList[7].name}}</p>
             </span>
             <img *ngIf="locationList[7] && locationList[7].image" src="{{locationList[7].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 8">
@@ -165,9 +156,10 @@
 
         <!-- Item 9 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[8])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[8] && locationList[8].name" class="location-name">{{locationList[8].name}}</p>
+                <p *ngIf="locationList[8] && locationList[8].name" (click)="locationFilter(locationList[8])"
+                    class="location-name">{{locationList[8].name}}</p>
             </span>
             <img *ngIf="locationList[8] && locationList[8].image" src="{{locationList[8].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 9">
@@ -175,9 +167,10 @@
 
         <!-- Item 10 -->
         <div [class.hidden]="locationList.length <= 0" class="duration-700 ease-in-out " data-carousel-item>
-            <span (click)="locationFilter(locationList[9])"
+            <span
                 class="text-white  font-semibold z-40 absolute w-full h-full flex items-center justify-center cursor-pointer">
-                <p *ngIf="locationList[9] && locationList[9].name" class="location-name">{{locationList[9].name}}</p>
+                <p *ngIf="locationList[9] && locationList[9].name" (click)="locationFilter(locationList[9])"
+                    class="location-name">{{locationList[9].name}}</p>
             </span>
             <img *ngIf="locationList[9] && locationList[9].image" src="{{locationList[9].image}}"
                 class="h-full w-full brightness-50 object-cover" alt="item 10">
@@ -195,7 +188,6 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M5 1 1 5l4 4" />
             </svg>
-            <span class="sr-only">Previous</span>
         </span>
     </button>
     <button type="button"
@@ -208,7 +200,6 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="m1 9 4-4-4-4" />
             </svg>
-            <span class="sr-only">Next</span>
         </span>
     </button>
 </div>

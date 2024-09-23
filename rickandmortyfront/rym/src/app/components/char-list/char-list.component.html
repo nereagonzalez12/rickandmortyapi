@@ -3,10 +3,9 @@
     <div class="pt-4 flex md:justify-between row justify-center items-center md:flex-wrap mb-8 ">
         <form [formGroup]="searchForm" class="flex items-center max-w-md mb-4">
             <div class="flex w-full">
-
                 <button id="dropdown-button" data-dropdown-toggle="dropdown"
                     class="flex-shrink-0 z-10 inline-flex items-center p-2 md:py-2.5 md:px-4 text-xs md:text-sm font-medium text-center border-1 bg-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color border rounded-s-lg focus:ring-4 focus:outline-none focus:ring-light-green-moss"
-                    type="button">{{speciesSelected}}<svg class="w-2.5 h-2.5 ms-1.5 md:ms-2.5" aria-hidden="true"
+                    type="button">{{speciesSelectedName}}<svg class="w-2.5 h-2.5 ms-1.5 md:ms-2.5" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
@@ -16,28 +15,34 @@
                     <ul class="py-2 text-xs md:text-sm text-light-color" aria-labelledby="dropdown-button">
                         <li>
                             <button type="button" (click)="speciesSelection('Human')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Human</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">{{'Human' | translate
+                                }}</button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Alien')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Alien</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 "> {{'Alien' | translate
+                                }}</button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Animal')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Animal</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Animal </button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Humanoid')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Humanoid</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 "> {{'Humanoid' | translate
+                                }}</button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Poopybutthole')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Poopybutthole</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 "> {{'Poopybutthole' |
+                                translate
+                                }}</button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Mythological Creature')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Mythological
-                                Creature</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 "> {{'Mythological Creature' |
+                                translate
+                                }}</button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Robot')"
@@ -49,18 +54,21 @@
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('Disease')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Disease</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 "> {{'Disease' |
+                                translate }}</button>
                         </li>
                         <li>
                             <button type="button" (click)="speciesSelection('unknown')"
-                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 ">Unknown</button>
+                                class="inline-flex w-full px-4 py-2 hover:bg-dark-color-1 "> {{'Unknown' |
+                                translate }}</button>
                         </li>
                     </ul>
                 </div>
                 <div class="relative w-full">
                     <input type="text" id="search-dropdown" type="text" formControlName="parameter" name="searchQuery"
                         class="rounded-e-lg bg-background-color text-light-color text-xs md:text-sm focus:ring-light-green-moss focus:border-light-green-pastel block w-full p-2.5  "
-                        placeholder="Who has my plumbus?" required autocomplete="off" />
+                        placeholder=" {{'Who has my plumbus?' |
+                            translate }}" required autocomplete="off" />
                     <button type="submit" (click)="searchCharacterInput()"
                         class="absolute top-0 end-0 h-full p-2.5 text-xs md:text-sm font-medium text-white rounded-e-lg search-button ms-2 bg-light-green-moss focus:ring-4 focus:outline-none focus:ring-light-green-pastel ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 64 64" fill="white">
@@ -68,7 +76,8 @@
                                 d="M 24 2.8886719 C 12.365714 2.8886719 2.8886719 12.365723 2.8886719 24 C 2.8886719 35.634277 12.365714 45.111328 24 45.111328 C 29.036552 45.111328 33.664698 43.331333 37.298828 40.373047 L 52.130859 58.953125 C 52.130859 58.953125 55.379484 59.435984 57.396484 57.333984 C 59.427484 55.215984 58.951172 52.134766 58.951172 52.134766 L 40.373047 37.298828 C 43.331332 33.664697 45.111328 29.036548 45.111328 24 C 45.111328 12.365723 35.634286 2.8886719 24 2.8886719 z M 24 7.1113281 C 33.352549 7.1113281 40.888672 14.647457 40.888672 24 C 40.888672 33.352543 33.352549 40.888672 24 40.888672 C 14.647451 40.888672 7.1113281 33.352543 7.1113281 24 C 7.1113281 14.647457 14.647451 7.1113281 24 7.1113281 z">
                             </path>
                         </svg>
-                        <span class="sr-only">Search</span>
+                        <span class="sr-only"> {{'Search' |
+                            translate }}</span>
                     </button>
                 </div>
             </div>
@@ -80,7 +89,9 @@
                 class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color disabled:shadow-inner disabled:bg-dark-color-1 "
                 disabled>«</button>
             <button
-                class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">Page
+                class="text-xs md:text-sm join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">{{'Page'
+                |
+                translate }}
                 {{actualPage}}</button>
             <button *ngIf="nextCharacterPage && nextCharacterPage != null" (click)="nextPage()"
                 class="join-item btn bg-dark-color-1-5 border-dark-color-1-5 hover:bg-dark-color-1 hover:border-dark-color-1 hover:shadow-inner hover:text-light-green-moss text-light-color">»</button>
@@ -125,23 +136,23 @@
 
                     <!-- Character info -->
                     <p class="text-dark-color-4 text-sm">
-                        Origin:
+                        {{'Origin:' | translate }}
                     </p>
                     <p *ngIf="character.origin" class="text-light-color text-base">
                         {{character.origin.name}}
                     </p>
                     <p *ngIf="!character.origin" class="text-light-color text-base">
-                        unknown
+                        {{'unknown' | translate }}
                     </p>
 
                     <p class="text-dark-color-4 text-sm mt-3">
-                        Frist seen in:
+                        {{'Frist seen in:' | translate }}
                     </p>
                     <p *ngIf="character.episode[0]" class="text-light-color text-base">
                         {{character.episode[0].name}}
                     </p>
                     <p *ngIf="!character.episode[0]" class="text-light-color text-base">
-                        unknown
+                        {{'unknown' | translate }}
                     </p>
                 </div>
                 <div class="px-6 py-3 flex flex-row items-center justify-between bg-dark-color-2">

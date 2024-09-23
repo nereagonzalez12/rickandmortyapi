@@ -1,9 +1,11 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ICharacter } from 'src/app/models/character.model';
 import { ICharacterResponse } from 'src/app/models/characterResponse.model';
 import { ApiService } from 'src/app/services/api.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+
 
 @Component({
   selector: 'app-char-list',
@@ -14,6 +16,7 @@ export class CharListComponent implements OnInit {
   characterList: ICharacter[] = [];
   loadingCards: boolean = true;
   speciesSelected: string = 'Species';
+  speciesSelectedName: string = 'Species';
   // Location filter
   locationFilter: string = '';
   // Pagination
@@ -30,13 +33,21 @@ export class CharListComponent implements OnInit {
   @Output() triggerScroll = new EventEmitter<void>();
 
   // Form constructor
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private translate: TranslateService) {
     this.searchForm = this.formBuilder.group({
       parameter: [''] // Inicialize with an empty parameter
     });
   }
 
   ngOnInit() {
+    // Dinamic words translation
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      if (event) {
+        this.speciesSelectedName = event.translations.Species;
+      }
+    });
+
+
     // Handler page 0
     if (this.actualPage < 1) {
       this.actualPage = 1;
@@ -59,8 +70,8 @@ export class CharListComponent implements OnInit {
         this.obtainCharactersPageDataWithLocation(this.actualPage, this.locationFilter);
       }
     });
-
   }
+
 
   /* Utils */
   removeStorage() {
@@ -72,7 +83,7 @@ export class CharListComponent implements OnInit {
   // Scroll to top button
   scrollToTop(): void {
     this.triggerScroll.emit();
-  }
+  };
 
   /* Fetch data */
   obtainCharactersPageData(page: number, name?: string, species?: string) {
@@ -188,7 +199,9 @@ export class CharListComponent implements OnInit {
   // Species filter
   speciesSelection(species: string) {
     this.actualPage = 1;
-    this.speciesSelected = species;
+    this.translate.get(species).subscribe((translatedSpecies: string) => {
+      this.speciesSelected = translatedSpecies;
+    });
     this.obtainCharactersPageData(this.actualPage, '', species);
   }
 
@@ -210,5 +223,7 @@ export class CharListComponent implements OnInit {
       }
     });
   }
+
+
 
 }

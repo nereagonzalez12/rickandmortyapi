@@ -56,3 +56,9 @@ _________________
 
 # RxJS is a library for composing asynchronous and event-based programs by using observable sequences
 npm install rxjs
+
+_________________
+
+# Install Ngx-Translate for traductions
+npm install @ngx-translate/core @ngx-translate/http-loader
+

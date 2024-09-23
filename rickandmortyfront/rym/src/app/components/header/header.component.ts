@@ -13,7 +13,6 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 })
 
 export class HeaderComponent {
-  currentLang: string = '';
   // Location carousel
   locationList: ILocation[] = [];
   location?: ILocation;
@@ -21,12 +20,17 @@ export class HeaderComponent {
   private apiService = inject(ApiService);
   private sharedDataService = inject(SharedDataService);
 
-  constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('en'); // default idiom
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    if (browserLang) {
+      translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
+    }
   }
 
   ngOnInit(): void {
-    this.currentLang = this.translate.currentLang;
     this.obtainLocationsCount();
   }
 
@@ -83,7 +87,6 @@ export class HeaderComponent {
   // Idiom selector
   switchLang(lang: string) {
     this.translate.use(lang);
-    this.currentLang = lang;
   }
 
 }
