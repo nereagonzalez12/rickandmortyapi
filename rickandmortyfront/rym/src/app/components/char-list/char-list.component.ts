@@ -48,6 +48,7 @@ export class CharListComponent implements OnInit {
     });
 
 
+
     // Handler page 0
     if (this.actualPage < 1) {
       this.actualPage = 1;
@@ -144,8 +145,6 @@ export class CharListComponent implements OnInit {
     });
   }
 
-
-
   /* Pagination functions */
   nextPage() {
     let nameParameter = sessionStorage.getItem('nameParameter') || undefined;
@@ -224,6 +223,6 @@ export class CharListComponent implements OnInit {
     });
   }
 
-
+  /* Translations */
 
 }

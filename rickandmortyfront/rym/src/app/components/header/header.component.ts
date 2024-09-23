@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { IGenericResponse } from 'src/app/models/genericResponse.model';
 import { ILocation } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -13,6 +13,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 })
 
 export class HeaderComponent {
+  selectedLang: string | null = '';
   // Location carousel
   locationList: ILocation[] = [];
   location?: ILocation;
@@ -22,15 +23,29 @@ export class HeaderComponent {
 
   constructor(public translate: TranslateService) {
     translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('en');
+    this.selectedLang = sessionStorage.getItem('lang');
 
-    const browserLang = translate.getBrowserLang();
-    if (browserLang) {
-      translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
+    if (this.selectedLang) {
+      translate.setDefaultLang(this.selectedLang);
+      translate.use(this.selectedLang);
+    } else {
+      const browserLang = translate.getBrowserLang();
+      if (browserLang) {
+        const langToUse = browserLang.match(/en|es/) ? browserLang : 'en';
+        translate.setDefaultLang(langToUse);
+        translate.use(langToUse);
+      }
     }
   }
 
   ngOnInit(): void {
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      if (event) {
+        sessionStorage.setItem('lang', event.lang);
+      }
+    });
+
     this.obtainLocationsCount();
   }
 
@@ -45,7 +60,6 @@ export class HeaderComponent {
       }
     });
   }
-
 
   obtainRandomLocations(count: number) {
     // Obtain 10 random locations for the slider
