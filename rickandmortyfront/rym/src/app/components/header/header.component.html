@@ -8,7 +8,7 @@
                 <!-- Dropdown menu -->
                 <label class="z-40 ">
                     <select
-                        class="md:mt-2 bg-dark-color-1 border-none cursor-pointer text-white uppercase text-xs md:text-sm rounded-lg focus:ring-3 focus:ring-light-green-moss block w-full p-2.5 "
+                        class="md:mt-2 bg-dark-color-1 border-none cursor-pointer text-white uppercase text-xs md:text-sm rounded-lg focus:ring-3 focus:ring-light-green-moss block md:w-full pr-1 py-1 "
                         #langSelect (change)="translate.use(langSelect.value)">
                         <option id="langOption" *ngFor="let lang of translate.getLangs()" [value]="lang"
                             [selected]="lang === translate.currentLang">{{ lang }}</option>

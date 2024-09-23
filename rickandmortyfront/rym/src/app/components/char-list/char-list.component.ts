@@ -265,4 +265,5 @@ export class CharListComponent implements OnInit {
       }))
     }));
   }
+
 }

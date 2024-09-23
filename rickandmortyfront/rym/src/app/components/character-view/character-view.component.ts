@@ -30,8 +30,10 @@ export class CharacterViewComponent implements OnInit {
           translatedSpecies: this.translate.instant(`${data.species}`),
           episode: data.episode.map((ep: IEpisode) => ({
             ...ep,
-            translatedName: this.translate.instant(`${ep.episode}`)
-          }))
+            translatedName: this.translate.instant(`${ep.episode}`),
+            air_date: this.translateDate(ep.air_date)
+          })),
+
         };
         this.characterFilter = character;
       }
@@ -43,6 +45,22 @@ export class CharacterViewComponent implements OnInit {
 
   closeCharacterView() {
     this.sharedDataService.updateCharacterData(null);
+  }
+
+  /* Translation */
+  translateDate(date: string): string {
+    // Obtain the current lang
+    const currentLang = this.translate.currentLang || 'en';
+    const dateObj = new Date(date);
+
+    // Format date depends on selected lang
+    const formattedDate = new Intl.DateTimeFormat(currentLang, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }).format(dateObj);
+
+    return formattedDate;
   }
 
 }
