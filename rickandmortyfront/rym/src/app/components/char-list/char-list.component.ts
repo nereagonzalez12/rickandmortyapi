@@ -221,6 +221,7 @@ export class CharListComponent implements OnInit {
     this.actualPage = 1;
     this.translate.get(species).subscribe((translatedSpecies: string) => {
       this.speciesSelected = translatedSpecies;
+      this.speciesSelectedName = translatedSpecies;
     });
     this.obtainCharactersPageData(this.actualPage, '', species);
   }
