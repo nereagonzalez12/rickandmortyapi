@@ -212,13 +212,25 @@ export class CharListComponent implements OnInit {
   // Seach input
   searchCharacterInput() {
     this.actualPage = 1;
-    this.speciesSelected = 'Species';
+
+    // Clear species filter
+    this.translate.get('Species').subscribe((translatedSpecies: string) => {
+      this.speciesSelected = translatedSpecies;
+      this.speciesSelectedName = translatedSpecies;
+    });
+
     this.obtainCharactersPageData(this.actualPage, this.searchForm.get('parameter')?.value);
   }
 
   // Species filter
   speciesSelection(species: string) {
     this.actualPage = 1;
+
+    // Clear search filter
+    this.searchForm.patchValue({
+      parameter: '',
+    });
+
     this.translate.get(species).subscribe((translatedSpecies: string) => {
       this.speciesSelected = translatedSpecies;
       this.speciesSelectedName = translatedSpecies;
@@ -228,6 +240,17 @@ export class CharListComponent implements OnInit {
 
   // Location filter
   obtainCharactersPageDataWithLocation(page: number, location: string) {
+
+    // Clear others filter
+    this.translate.get('Species').subscribe((translatedSpecies: string) => {
+      this.speciesSelected = translatedSpecies;
+      this.speciesSelectedName = translatedSpecies;
+    });
+
+    this.searchForm.patchValue({
+      parameter: '',
+    });
+
     /* Subscribe to the API server to fetch data */
     sessionStorage.removeItem('pageNumber');
     this.apiService.getCharactersPageLocation(page, location).subscribe({
