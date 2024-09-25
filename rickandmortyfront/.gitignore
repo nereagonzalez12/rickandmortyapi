@@ -1,10 +1,11 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
+# /dist
 /tmp
 /out-tsc
 /bazel-out
+
 
 # Node
 /node_modules
@@ -54,7 +55,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+# dist/
 downloads/
 eggs/
 .eggs/
