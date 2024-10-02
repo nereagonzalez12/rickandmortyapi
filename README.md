@@ -1,4 +1,4 @@
-# Ricktionary: A Rick and Morty Encyclopedia 🌌👽
+# Ricktionary: A Rick and Morty Encyclopedia [🌌👽](https://ricktionary.vercel.app)
 
 ### [English](#english-version) | [Español](#versión-en-español)
 
@@ -59,10 +59,23 @@ To run this project locally, follow these steps:
     ng serve
     ```
 
+## Website 👀
+
+[Ricktionary](https://ricktionary.vercel.app)
+
 ### 📸 Screenshots:
 ![Landing page](./rickandmortyfront/rym/src/assets/screenshots/landing.png)
+
+---
+
 ![Filter](./rickandmortyfront/rym/src/assets/screenshots/poopybutthole-filter.png)
+
+---
+
 ![Summer view](./rickandmortyfront/rym/src/assets/screenshots/summer-view.png)
+
+---
+
 ![Footer](./rickandmortyfront/rym/src/assets/screenshots/footer.png)
 
 ---
@@ -124,8 +137,21 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
     npm start
     ```
 
+## Página Web 👀
+
+[Ricktionary](https://ricktionary.vercel.app)
+
 ### 📸 Capturas de Pantalla:
 ![Landing page](./rickandmortyfront/rym/src/assets/screenshots/landing.png)
+
+---
+
 ![Filter](./rickandmortyfront/rym/src/assets/screenshots/poopybutthole-filter.png)
+
+---
+
 ![Summer view](./rickandmortyfront/rym/src/assets/screenshots/summer-view.png)
+
+---
+
 ![Footer](./rickandmortyfront/rym/src/assets/screenshots/footer.png)
