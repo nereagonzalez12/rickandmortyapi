@@ -50,8 +50,6 @@ export class CharListComponent implements OnInit {
       }
     });
 
-
-
     // Handler page 0
     if (this.actualPage < 1) {
       this.actualPage = 1;
@@ -71,7 +69,7 @@ export class CharListComponent implements OnInit {
       this.removeStorage();
       this.locationFilter = data;
       if (this.locationFilter != '') {
-        this.obtainCharactersPageDataWithLocation(this.actualPage, this.locationFilter);
+        this.obtainCharactersPageDataWithLocation(1, this.locationFilter);
       }
     });
   }
@@ -211,6 +209,7 @@ export class CharListComponent implements OnInit {
 
   // Seach input
   searchCharacterInput() {
+    this.removeStorage();
     this.actualPage = 1;
 
     // Clear species filter
@@ -224,12 +223,16 @@ export class CharListComponent implements OnInit {
 
   // Species filter
   speciesSelection(species: string) {
+    this.removeStorage();
     this.actualPage = 1;
 
     // Clear search filter
     this.searchForm.patchValue({
       parameter: '',
     });
+
+    // Clear location filter
+    this.locationFilter = '';
 
     this.translate.get(species).subscribe((translatedSpecies: string) => {
       this.speciesSelected = translatedSpecies;

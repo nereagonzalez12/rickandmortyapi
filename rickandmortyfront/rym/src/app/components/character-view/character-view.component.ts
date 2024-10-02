@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ICharacter } from 'src/app/models/character.model';
 import { IEpisode } from 'src/app/models/episode.model';
-import { DEFAULT_LOCATION_IMG } from 'src/app/services/global';
+import { BACK_URL, DEFAULT_LOCATION_IMG, FRONT_URL } from 'src/app/services/global';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -39,6 +39,8 @@ export class CharacterViewComponent implements OnInit {
       }
       if (this.characterFilter?.location.image === null) {
         this.characterFilter.location.image = DEFAULT_LOCATION_IMG;
+      } else if (this.characterFilter?.location.image) {
+        this.characterFilter.location.image = this.characterFilter.location.image.replace(BACK_URL, FRONT_URL);
       }
     });
   }

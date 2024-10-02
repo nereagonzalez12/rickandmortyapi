@@ -123,16 +123,17 @@
         <div *ngFor="let character of characterList ">
             <!-- CARD -->
             <div class="rounded overflow-hidden shadow-md flex flex-col">
-                <div class="relative"><a (click)="obtainCharacterData(character.id)">
+                <div class="relative"><span (click)="obtainCharacterData(character.id)" (click)="scrollToTop()">
                         <img class="w-full" src="{{character.image}}" alt="{{character.name}}">
                         <div
                             class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-background-color opacity-25 cursor-pointer">
                         </div>
-                    </a>
+                    </span>
                 </div>
                 <div class="px-6 py-4 mb-auto bg-dark-color-1-5 text-white">
-                    <a (click)="obtainCharacterData(character.id)"
-                        class="font-medium text-lg hover:text-light-green-bright transition duration-500 ease-in-out inline-block mb-2 cursor-pointer">{{character.name}}</a>
+                    <button (click)="obtainCharacterData(character.id)" (click)="scrollToTop()"
+                        aria-label="button to top with character view"
+                        class="font-medium text-lg hover:text-light-green-bright transition duration-500 ease-in-out inline-block mb-2 cursor-pointer">{{character.name}}</button>
 
                     <!-- Character info -->
                     <p class="text-dark-color-4 text-sm">
@@ -158,11 +159,11 @@
                 <div class="px-6 py-3 flex flex-row items-center justify-between bg-dark-color-2">
                     <span class="py-1 text-xs font-regular mr-1 flex flex-row items-center">
                         <img *ngIf="character.status == 'Alive'" src="assets/svg/green-portal.svg"
-                            class="status-portal h-5">
-                        <img *ngIf="character.status == 'Dead'" src="assets/svg/red-portal.svg"
+                            alt="status portal alive" class="status-portal h-5">
+                        <img *ngIf="character.status == 'Dead'" src="assets/svg/red-portal.svg" alt="status portal dead"
                             class="status-portal h-5">
                         <img *ngIf="character.status == 'unknown'" src="assets/svg/gray-portal.svg"
-                            class="status-portal h-5">
+                            alt="status portal unknown" class="status-portal h-5">
                         <span class="ml-1 text-base text-light-color"> {{ character.translatedStatus }}</span>
                     </span>
 
@@ -176,7 +177,8 @@
 </div>
 <!-- Scroll to top -->
 <div [class.hidden]="characterList.length < 1" class="w-full flex justify-center">
-    <button id="scrollButton" type="button" data-twe-ripple-init data-twe-ripple-color="light" (click)="scrollToTop()"
+    <button id="scrollButton" type="button" data-twe-ripple-init data-twe-ripple-color="light"
+        aria-label="scroll to top button" (click)="scrollToTop()"
         class="up-button md:mt-2 mr-2 inline-block rounded bg-background-color px-3 py-1.5 md:py-2.5 text-xs font-medium uppercase leading-normal text-light-color shadow-inner transition duration-150 ease-in-out hover:shadow-xl focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
         <span class="[&>svg]:h-3 [&>svg]:w-3 md:[&>svg]:h-5 md:[&>svg]:w-7">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"

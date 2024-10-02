@@ -69,12 +69,12 @@
             <div class="px-2 py-1 md:h-12 flex flex-row items-center justify-between bg-dark-color-1">
                 <span class="py-1 font-regular mr-1 flex flex-row items-center">
                     <img *ngIf="characterFilter.status == 'Alive'" src="assets/svg/green-portal.svg"
-                        class="status-portal h-3 md:h-5">
+                        alt="status portal alive" class="status-portal h-3 md:h-5">
                     <img *ngIf="characterFilter.status == 'Dead'" src="assets/svg/red-portal.svg"
-                        class="status-portal h-3 md:h-5">
+                        alt="status portal dead" class="status-portal h-3 md:h-5">
 
                     <img *ngIf="characterFilter.status == 'unknown'" src="assets/svg/gray-portal.svg"
-                        class="status-portal h-3 md:h-5">
+                        alt="status portal unknown" class="status-portal h-3 md:h-5">
                     <span class="ml-1 text-sm md:text-base  text-light-color">{{ characterFilter.translatedStatus
                         }}</span>
                 </span>
