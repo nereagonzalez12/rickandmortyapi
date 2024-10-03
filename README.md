@@ -1,4 +1,4 @@
-# Ricktionary: A Rick and Morty Encyclopedia [🌌👽](https://ricktionary.vercel.app)
+# <img src="./rickandmortyfront/rym/srcfavicon.ico" alt="ricktionary favicon" height="35"> Ricktionary: A Rick and Morty Encyclopedia [🌌👽](https://ricktionary.vercel.app)
 
 ### [English](#english-version) | [Español](#versión-en-español)
 
