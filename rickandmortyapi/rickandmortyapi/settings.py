@@ -34,7 +34,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,14 +87,26 @@ WSGI_APPLICATION = 'rickandmortyapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# PostgreSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'rym',
+#         'USER': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': 5432,
+#         'PASSWORD':'admin'
+#     }
+# }
+
+# MongoGB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rym',
-        'USER': 'postgres',
-        'HOST': 'localhost',
-        'PORT': 5432,
-        'PASSWORD':'admin'
+        'ENGINE': 'djongo',
+        'NAME': 'ricktionary',
+        'CLIENT': {
+            'host': env('MONGO_URI')
+        }
     }
 }
 

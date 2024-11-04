@@ -1,4 +1,4 @@
-django
+django>=4.2
 django-environ>=0.11.2
 psycopg[binary,pool]
 requests>=2.32.1
@@ -14,3 +14,7 @@ tqdm>=4.66.5
 
 # Image fields
 pillow>=10.4.0
+
+# vercel deploy
+djongo
+vercel

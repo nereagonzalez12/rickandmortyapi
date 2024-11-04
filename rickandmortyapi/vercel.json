@@ -1,0 +1,14 @@
+{
+    "builds": [
+        {
+            "src": "rickandmortyapi/wsgi.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "rickandmortyapi/wsgi.py"
+        }
+    ]
+}
